@@ -5,9 +5,29 @@
 module.exports=
 {
 
-  confirmacion:function(req,res)
+  registrar:function(req,res)
   {
-    UsuarioService.enviarConfirmacion();
+
+
+    var usuario=req.allParams();
+
+    usuario.nivel=1;
+
+    Usuario.create(usuario).exec(function (err, records) {
+
+      if(err)
+      {
+        return res.negotiate(err);
+
+        //   throw err;
+      }
+
+      UsuarioService.enviarConfirmacion(req,res,records);
+
+      res.json(records);
+
+    });
+    //UsuarioService.enviarConfirmacion(req,res);
   }
 
 }

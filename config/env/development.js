@@ -19,8 +19,22 @@ module.exports = {
 
    models: {
     connection: 'mongod',
-    migrate: 'alter'
+    migrate: 'alter',
+    schema: false //Si respeta los atributos del esquema o no. En produccion deberia estar en true
 
   }
+  ,
+  email:
+  {
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // use SSL
+    auth: {
+      user: "gabrielmacus@gmail.com",
+      pass: 'Sercan02'
+  }
+  },
+  salt:"qwerty",
+  hashAlgo:"sha256"
 
 };

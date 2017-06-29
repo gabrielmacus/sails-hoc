@@ -3,20 +3,14 @@
  */
 module.exports=
 {
-  enviarConfirmacion:function(req,res)
+  enviarConfirmacion:function(req,res,usuario)
   {
-    sails.hooks.email.send(
-     /* "testEmail",*/"test",
-      {
-        recipientName: "Joe",
-        senderName: "Sue"
-      },
-      {
-        to: "gabrielmacus@gmail.com",
-        subject: "Hi there"
-      },
-      function(err) {console.log(err || "It worked!");}
-    )
+    MailerService.enviarEmail(`Ya casi estas registrado ${usuario.nombre}`,sails.config.email.auth.user,usuario.email,'confirmacion',usuario
+    ,function (info) {
+
+        res.json(true);
+
+      });
   }
 
 }

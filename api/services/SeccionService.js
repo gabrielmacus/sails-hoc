@@ -34,10 +34,11 @@ module.exports =
   cargarArbolSecciones: function (callback) {
 
     Seccion.find().exec(function (err, results){
-      if (err) {
-        return res.serverError(err);
-      }
+      if(err)
+      {
+        return res.negotiate(err);
 
+      }
       var arbol=unflatten(results);
 
       callback(arbol);

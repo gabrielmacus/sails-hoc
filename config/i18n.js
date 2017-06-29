@@ -24,7 +24,7 @@ module.exports.i18n = {
   ***************************************************************************/
 
   // locales: ['en', 'es', 'fr', 'de'],
-
+  locales: ['en', 'es'],
   /****************************************************************************
   *                                                                           *
   * What is the default locale for the site? Note that this setting will be   *
@@ -35,7 +35,7 @@ module.exports.i18n = {
   ****************************************************************************/
 
   // defaultLocale: 'en',
-
+  defaultLocale: 'es',
   /****************************************************************************
   *                                                                           *
   * Automatically add new keys to locale (translation) files when they are    *
