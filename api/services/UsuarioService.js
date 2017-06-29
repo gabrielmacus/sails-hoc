@@ -5,7 +5,10 @@ module.exports=
 {
   enviarConfirmacion:function(req,res,usuario)
   {
-    MailerService.enviarEmail(`Ya casi estas registrado ${usuario.nombre}`,sails.config.email.auth.user,usuario.email,'confirmacion',usuario
+    MailerService.enviarEmail(sails.__({
+      phrase: `Ya casi estas registrado ${usuario.nombre}`,
+      locale: 'en'
+    }),sails.config.email.auth.user,usuario.email,'confirmacion',usuario
     ,function (info) {
 
         res.json(true);
