@@ -35,6 +35,7 @@ module.exports = {
   }
   },
   salt:"qwerty",
-  hashAlgo:"sha256"
+  hashAlgo:"sha256",
+  siteUrl:"http://localhost:1337"
 
 };

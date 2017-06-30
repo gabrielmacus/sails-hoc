@@ -1,4 +1,10 @@
 {
   "Welcome": "Bienvenido",
   "A brand new app.": "Una nueva aplicación.",
+  "confirmacionEmail.asunto":"Bienvenido, %s",
+  "confirmacionEmail.texto":"Hacé click en este link para completar tu registro",
+  "confirmacionEmail.boton":"Confirmar",
+  "confirmacionEmail.exito.encabezado":"{{nombre}}, tu usuario {{nombreUsuario}} ya esta correctamente registrado!",
+  "confirmacionEmail.exito.texto":"Redireccionando a la web...",
+  "confirmacionEmail.yaConfirmado.encabezado":"Tu usuario ya fue confirmado"
 }

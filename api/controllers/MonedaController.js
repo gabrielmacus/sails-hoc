@@ -1,4 +1,7 @@
 /**
+ * Created by Puers on 29/06/2017.
+ */
+/**
  * Created by Puers on 28/06/2017.
  */
 
@@ -30,7 +33,7 @@ module.exports=
     //UsuarioService.enviarConfirmacion(req,res);
   },
   confirmar:function(req,res){
-   var hash= req.param("hash");
+    var hash= req.param("hash");
 
     Usuario.update({codigoConfirmacion:hash,estado:1},{estado:2},function(err,result)
     {
@@ -54,4 +57,9 @@ module.exports=
       res.view(`confirmacionEmail/${template}`,{"usuario":result[0],"layout":'layouts/layout'});
     });
   }
+}
+
+module.exports=
+{
+
 }

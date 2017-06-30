@@ -10,6 +10,8 @@ module.exports = {
   arbol: function (req,res) {
 
     SeccionService.cargarArbolSecciones(function(e){
+
+
       return res.send( e);
     });
 
