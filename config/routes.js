@@ -32,11 +32,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  /*
   '/': {
     view: 'homepage'
-  },
+  },*/
   'POST /registrar/usuario': 'UsuarioController.registrar',
-  'get /confirmar/usuario/:hash':'UsuarioController.confirmar'
+  'get /confirmar/usuario/:hash':'UsuarioController.confirmar',
+  'get /':'HomeController.index'
 
 
   /***************************************************************************

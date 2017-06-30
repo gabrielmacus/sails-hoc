@@ -19,7 +19,7 @@ module.exports = {
 
    models: {
     connection: 'mongod',
-    migrate: 'alter',
+    migrate: 'safe',
     schema: false //Si respeta los atributos del esquema o no. En produccion deberia estar en true
 
   }
