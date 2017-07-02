@@ -31,21 +31,15 @@ function unflatten(arr) {
 module.exports =
 {
 
-  cargarArbolSecciones: function (callback) {
+  cargarArbolSecciones: function (results,callback) {
 
-    Seccion.find().exec(function (err, results){
-      if(err)
-      {
-        return res.negotiate(err);
 
-      }
       var arbol=unflatten(results);
 
       callback(arbol);
 
-    });
+
 
   }
-
 
 };

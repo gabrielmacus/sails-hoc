@@ -10,10 +10,9 @@ module.exports = {
     seccion: {
       model: 'Seccion'
     },
-    valor:{
-      model:'valor',
-      unique: true
-    }
+    moneda:{model:"Moneda"},
+    monto:{type:"float",required:true},
+    archivos:{}
   }
 
 };

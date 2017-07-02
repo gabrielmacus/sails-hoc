@@ -1,16 +1,20 @@
-<h1>Hola</h1>
-<style>
-  .fila div
-  {
-    height: 100px;
-  }
-</style>
+<% if(secciones)
+{   %> <div class="grilla grilla-secciones">
+
+ <% secciones.forEach(function (k,v) { %>
 
 
-<div class="grid">
+      <div class="seccion">
 
-   <div class="">
+        <figure class="responsive" >
+          <img class="cover responsive" src="http://admin.mapucheonline.com/images/car.jpg">
+          </figure>
 
-   </div>
+        </div>
 
+
+ <% }); %>
 </div>
+<%
+}
+%>

@@ -18,7 +18,12 @@ module.exports=
     var data={link:linkConfirmacion,texto:res.__('confirmacionEmail.texto'),boton:res.__('confirmacionEmail.boton')};
 
     MailerService.enviarEmail(asunto,sails.config.email.auth.user,usuario.email,'confirmacion',data
-    ,function (info) {
+    ,function (err,info) {
+
+
+        if (err) {
+          return res.negotiate(err);
+        }
 
         res.json(true);
 

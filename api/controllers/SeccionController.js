@@ -7,12 +7,23 @@
 
 module.exports = {
 
-  arbol: function (req,res) {
+  getArbol: function (req,res) {
 
-    SeccionService.cargarArbolSecciones(function(e){
+    Seccion.find().exec(function (err, results) {
+      if(err)
+      {
+        return res.negotiate(err);
+
+      }
 
 
-      return res.send( e);
+      SeccionService.cargarArbolSecciones(results,function(e){
+
+        return res.send( e);
+
+      });
+
+
     });
 
 

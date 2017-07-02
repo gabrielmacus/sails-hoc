@@ -7,7 +7,7 @@ module.exports=
 {
 
   enviarEmail:function (asunto,emisor,receptor,template,data,callback) {
-    
+
     var transporter = nodemailer.createTransport(sails.config.email);
     var templateDir = path.join(process.cwd(), 'views/emailTemplates', template);
   //  res.view('emailTemplates/confirmacionUsuario', {layout: 'emailTemplates/layout'})
@@ -27,25 +27,27 @@ module.exports=
     {
       if(err)
       {
-        throw err;
+        callback(err);
       }
 
       opciones.html=result.html;
 
       transporter.sendMail(opciones, function(err, info){
+
+
         if(err){
 
-          throw err;
+          callback(err);
 
         }
 
-        callback(info);
-        
+        callback(null,info);
+
       });
 
 
     });
-    
+
 
 
   }

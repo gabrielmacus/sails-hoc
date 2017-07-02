@@ -1,4 +1,37 @@
-.grid
+/*.grid
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+*/
+
+img.cover
+{
+  object-fit: cover;
+}
+img.contain
+{
+  object-fit: contain;
+}
+.responsive
+{
+  width: 100%;
+  height: 100%;
+}
+.fila
+{
+  width: 100%;
+display: block;
+}
+.grilla
+{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.flex
 {
   display: flex;
   flex-direction: row;
@@ -6,16 +39,47 @@
   justify-content: space-between;
 }
 
+.columns(@columns,@size,@i:1) when (@i <= @columns)
+{
 
-.portada .grid
 
 
+  .fila > .col.@{size}-@{i}
+  {
+     @width: ((@i*100)/@columns);
+    width:  ~"@{width}%";
+    float: left;
+  }
+
+
+
+  .columns(@columns,@size,(@i + 1));
+
+}
+
+
+/*.grid(@cells,@size,@i:1) when (@i <= @cells)
+{
+
+  .grilla > .celda.@{size}-@{i}
+  {
+    @width: ((@i*100)/@cells);
+    width:  ~"@{width}%";
+    height: ~"@{width}%";
+    float: left;
+  }
+
+
+  .grid(@cells,@size,(@i + 1));
+}*/
+
+.columns(12,xl);
 
 @media screen and  (max-width:1023px)
 {
 
 
-
+  .columns(12,l);
 
 }
 
@@ -23,18 +87,28 @@
 @media screen and (max-width:767px)
 {
 
-
+  .columns(12,m);
 
 
 }
 @media screen and (max-width:600px) {
-
+  .columns(12,s);
 
 }
 
 @media screen and (max-width:425px) {
 
 
+  .columns(12,xs);
 
+}
 
+body,html
+{
+  height: 100%;
+}
+
+body > section
+{
+  height: 100%;
 }

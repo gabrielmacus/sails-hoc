@@ -38,7 +38,8 @@ module.exports.routes = {
   },*/
   'POST /registrar/usuario': 'UsuarioController.registrar',
   'get /confirmar/usuario/:hash':'UsuarioController.confirmar',
-  'get /':'HomeController.index'
+  'get /':'HomeController.index',
+  'get /secciones/arbol':'SeccionController.getArbol'
 
 
   /***************************************************************************

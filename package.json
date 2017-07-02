@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "dateformat": "^2.0.0",
     "ejs": "2.3.4",
     "email-templates": "^2.6.0",
     "grunt": "1.0.1",
@@ -20,6 +21,7 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.5.2",
     "include-all": "^1.0.0",
+    "mkdir-recursive": "^0.3.0",
     "nodemailer": "^4.0.1",
     "rc": "1.0.1",
     "sails": "~0.12.13",
