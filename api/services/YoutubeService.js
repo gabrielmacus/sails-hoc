@@ -24,13 +24,14 @@ module.exports=
 
       var videos=[];
 
-      $(".yt-lockup-content").each(function() {
-        var titulo = $(this).find(".yt-lockup-title  > a").text();
-        var id=$(this).find(".yt-lockup-title  > a").attr("href");
-        id = id.split("=");
-        id = id[link.length-1];
+      $(".yt-lockup").each(function() {
+        var titulo = $(this).find(".yt-lockup-content .yt-lockup-title  > a").text();
+        var id=$(this).find(".yt-lockup-content  .yt-lockup-title  > a").attr("href");
 
-        videos.push({titulo:titulo,id:id});
+        id = id.split("=");
+        id = id[id.length-1];
+        var thumbnail=`http://img.youtube.com/vi/${id}/0.jpg`;
+        videos.push({titulo:titulo,id:id,thumbnail:thumbnail});
       });
 
 

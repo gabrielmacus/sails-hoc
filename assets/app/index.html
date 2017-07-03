@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body data-ng-app="directMusic"  data-ng-cloak >
+
+
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
+<script src="js/angular.audio.js"></script>
+
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+
+
+<!-- Your application bootstrap  -->
+<script type="text/javascript">
+  function error(err) {
+
+    alert("Hubo un error, que esperabas, es una app de prueba");
+    console.log(err);
+  }
+  /**
+   * You must include the dependency on 'ngMaterial'
+   */
+ app= angular.module('directMusic', ['ngRoute','ngAudio']);
+
+
+
+
+  app.config(function($routeProvider) {
+    $routeProvider
+      .when("/", {
+        templateUrl : "views/home.html",
+        controller:"homeController"
+      }).
+      when("/playlist",
+      {
+        templateUrl:"views/playlist.html",
+        controller:"playlistController"
+
+      })
+
+  });
+
+</script>
+
+<script src="controllers/homeController.js"></script>
+<script src="controllers/playlistController.js"></script>
+
+<section class="main-container" data-ng-view>
+
+</section>
+<footer class="fixed-bottom" data-ng-if="player.src" data-ng-include="'views/player.html'"></footer>
+
+</body>
+</html>

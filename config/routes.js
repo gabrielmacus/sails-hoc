@@ -43,7 +43,7 @@ module.exports.routes = {
   'get /':'HomeController.index',
 
   'get /secciones/arbol':'SeccionController.getArbol',
-  'get /youtube/:video':"YoutubeController.getLink"
+  'get /youtube/link/:video':"YoutubeController.getLink",
 
 
 

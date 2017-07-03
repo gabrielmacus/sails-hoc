@@ -1,0 +1,14 @@
+<ul class="list">
+  <li class="item" data-ng-repeat="p in playlist" data-ng-click="play(p.id)">
+    <span class="title" >{{p.titulo}}</span>
+    <!--
+    <div class="icon play">
+      <i class="fa fa-play " aria-hidden="true"></i>
+    </div>
+    -->
+    <div class="thumbnail">
+      <img data-ng-src="{{p.thumbnail}}" class="fit">
+    </div>
+  </li>
+</ul>
+
