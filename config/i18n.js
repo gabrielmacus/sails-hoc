@@ -35,7 +35,7 @@ module.exports.i18n = {
   ****************************************************************************/
 
   // defaultLocale: 'en',
-  defaultLocale: 'es',
+  defaultLocale: 'es'
   /****************************************************************************
   *                                                                           *
   * Automatically add new keys to locale (translation) files when they are    *

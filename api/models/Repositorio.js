@@ -19,6 +19,13 @@ module.exports = {
        direccionWeb:{type:'string',required:true},
        carpetaDeGuardado:{type:'string',required:true}
        */
+    },
+    filesystem:
+    {
+      type:'json'
+      /*
+      direccionWeb,carpetaDeGuardado
+       */
     }
   }
 

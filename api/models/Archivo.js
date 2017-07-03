@@ -6,7 +6,10 @@ module.exports = {
   attributes:
   {
     nombre:{type:"string",size:100,required:true},
-    texto:{type:"text",size:800}
+    descripcion:{type:"text",size:800},
+    peso:{type:'integer'},
+    nombreArchivo:{type:'string'},
+    repositorio:{model:"Repositorio",required:true}
   }
 
 };

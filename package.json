@@ -5,6 +5,8 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "async": "^2.5.0",
+    "cheerio": "^1.0.0-rc.2",
     "dateformat": "^2.0.0",
     "ejs": "2.3.4",
     "email-templates": "^2.6.0",
@@ -21,12 +23,15 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.5.2",
     "include-all": "^1.0.0",
+    "jsonwebtoken": "^7.4.1",
     "mkdir-recursive": "^0.3.0",
     "nodemailer": "^4.0.1",
     "rc": "1.0.1",
+    "request": "^2.81.0",
     "sails": "~0.12.13",
     "sails-disk": "~0.10.9",
-    "sails-mongo": "^0.12.2"
+    "sails-mongo": "^0.12.2",
+    "youtube-dl": "^1.11.1"
   },
   "scripts": {
     "debug": "node debug app.js",

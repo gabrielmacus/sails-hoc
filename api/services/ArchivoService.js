@@ -5,29 +5,22 @@ const fx = require('mkdir-recursive');
 module.exports=
 {
 
-  subirArchivo:function(path)
+  subirArchivo:function(path,files,callback)
   {
-    fx.mkdir(dirname, function(err) {
+    fx.mkdir(path, function(err) {
 
       if (err) {
         return res.negotiate(err);
       }
 
-      req.file('files').upload({
+    files.upload({
         // don't allow the total upload size to exceed ~10MB
 //    maxBytes: 10000000,
-        dirname:dirname
+        dirname:path
       }, function whenDone(err, uploadedFiles) {
-        if (err) {
-          return res.negotiate(err);
-        }
 
-        // If no files were uploaded, respond with an error.
-        if (uploadedFiles.length === 0) {
-          return res.badRequest('No file was uploaded');
-        }
+        callback(err,uploadedFiles);
 
-        return res.ok();
 
       });
 

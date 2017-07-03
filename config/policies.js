@@ -49,6 +49,10 @@ module.exports.policies = {
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
 
+  UsuarioController:
+  {
+    registrar:['noRegistrado']
+  }
 
 
 };

@@ -7,7 +7,8 @@ module.exports = {
   attributes:
   {
     nombre:{type:"string",size:100},
-    pertenece:{type:"integer",defaultsTo:0}
+    pertenece:{type:"integer",defaultsTo:0},
+    foto:{model:'Archivo'}
   }
 
 };

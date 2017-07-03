@@ -2,11 +2,7 @@
  * Created by Puers on 28/06/2017.
  */
 
-const crypto = require('crypto');/**
- * Created by Puers on 28/06/2017.
- */
-
-
+const crypto = require('crypto');
 module.exports = {
 
   attributes:
@@ -18,7 +14,9 @@ module.exports = {
     contrasena:{type:"string", size:150,required:true},
     nivel:{type:"integer",defaultsTo:1},
     estado:{type:"integer", enum: [1,2],defaultsTo:1}, //1:no activo 2:activo
-    codigoConfirmacion:{type:"string",size:100}
+    codigoConfirmacion:{type:"string",size:100},
+    facebookId:{type:"string"},
+    googleId:{type:"string"}
   },
   beforeCreate:function (values,callback) {
 

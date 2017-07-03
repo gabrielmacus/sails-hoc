@@ -6,5 +6,15 @@
   "confirmacionEmail.boton":"Confirmar",
   "confirmacionEmail.exito.encabezado":"{{nombre}}, tu usuario {{nombreUsuario}} ya esta correctamente registrado!",
   "confirmacionEmail.exito.texto":"Redireccionando a la web...",
-  "confirmacionEmail.yaConfirmado.encabezado":"Tu usuario ya fue confirmado"
+  "confirmacionEmail.yaConfirmado.encabezado":"Tu usuario ya fue confirmado",
+
+  "subidaArchivos.archivosNoSubidos":"Ningún archivo fue subido",
+  "subidaArchivos.noExisteRepositorio":"No existe el repositorio seleccionado",
+
+  "usuario.yaRegistrado":"El usuario ya esta registrado",
+  "usuario.noAutenticado":"Debe ingresar a su cuenta para realizar dicha acción",
+  "usuario.datosIncorrectos":"Los datos de ingreso son incorrectos",
+  "usuario.inactivo":"El usuario solicitado no se encuentra activo",
+  "usuario.sesionInvalida":"La sesión es inválida. Ingrese de nuevo"
+
 }
