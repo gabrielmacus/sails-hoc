@@ -357,9 +357,9 @@ html,body
   width: 75%;
   top:19px;
   position: relative;
-  border-bottom: 0;
+  border-bottom: 2px transparent solid;
 }
-.playlist > .fixed-top .form-block input:focus
+.playlist > .fixed-top .form-block input:focus,.playlist > .fixed-top .form-block input.ng-not-empty
 {
   border-bottom: 2px #16af8c solid;
 }
