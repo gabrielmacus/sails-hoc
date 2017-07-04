@@ -20,7 +20,9 @@ html,body
 }
 .list
 {
+
   margin: 0;
+  margin-top: 80px;
   width: 100%;
   float: left;
   padding: 10px;
@@ -78,6 +80,13 @@ html,body
   width: 100%;
   bottom: 0px;
 }
+.fixed-top
+{
+  position: fixed;
+  float: left;
+  width: 100%;
+  top: 0px;
+}
 .form-block
 {
   float: left;
@@ -88,28 +97,28 @@ html,body
 {
   border: 0;
   outline: 0;
-  border-bottom: 2px #5c6bc0 solid;
+  border-bottom: 2px #16af8c solid;
 
 }
 .form-block label
 {
   position: absolute;
-  top: 0px;
+  top: 10px;
   left: 0px;
   font-size: 22px;
 
 }
 .form-block input:focus + label,input.ng-not-empty + label
 {
-  top:0px;
+  top:-20px;
   left: 0px;
   font-size: 18px;
 
 }
 .form-block input:focus,input.ng-not-empty
 {
- margin-top: 24px;
-}
+ /*margin-top: 24px;
+*/}
 
 .animate
 {
@@ -135,7 +144,7 @@ html,body
   border: 0;
   outline: 0;
   padding: 15px;
-  background: #3949ab;
+  background: #16af8c;
   color: white;
 
 }
@@ -143,4 +152,194 @@ html,body
 {
   width: 100%;
   height: 100%;
+}
+.audio-player
+{
+  float: left;
+  width: 100%;
+  background: #eaeaea;
+  height: 90px;
+}
+
+.audio-player .transcurrido
+{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.audio-player .duracion
+{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.audio-player .progress-bar
+{
+  height: 4px;
+  left: 0;
+  background: #21c6a0;
+  width: 0%;
+  float: left;
+  position: absolute;
+  bottom: 0px;
+}
+.audio-player .controls
+{
+  text-align: center;
+}
+.audio-player .controls .play,.audio-player .controls .rewind,.audio-player .controls .forward,.audio-player .controls .pause
+{
+  font-size: 25px;
+  position: relative;
+  /* bottom: 15px; */
+  top: 13px;
+  color: #212121;
+}
+.audio-player .controls .rewind
+{
+  position: relative;
+  left: -15px;
+}
+
+.audio-player .controls .forward
+{
+  position: relative;
+  right: -15px;
+}
+.loader
+{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background:transparent;
+  /* filter: blur(12px); */
+}
+
+
+/*Spinner*/
+
+.spinner {
+  -webkit-animation: rotator 1.4s linear infinite;
+  animation: rotator 1.4s linear infinite;
+  margin: auto;
+}
+
+@-webkit-keyframes rotator {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes rotator {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+}
+.path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+  animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+
+@-webkit-keyframes colors {
+  0% {
+    stroke: #4285F4;
+  }
+  25% {
+    stroke: #DE3E35;
+  }
+  50% {
+    stroke: #F7C223;
+  }
+  75% {
+    stroke: #1B9A59;
+  }
+  100% {
+    stroke: #4285F4;
+  }
+}
+
+@keyframes colors {
+  0% {
+    stroke: #4285F4;
+  }
+  25% {
+    stroke: #DE3E35;
+  }
+  50% {
+    stroke: #F7C223;
+  }
+  75% {
+    stroke: #1B9A59;
+  }
+  100% {
+    stroke: #4285F4;
+  }
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
+}
+.loader
+{
+  background-color: rgba(0, 0, 0, 0.47);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
+
+.loader.fadeIn
+{
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
 }

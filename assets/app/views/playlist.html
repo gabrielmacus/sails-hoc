@@ -1,3 +1,15 @@
+<div class="fixed-top">
+  <form data-ng-submit="search()" class="container">
+    <div class="form-block">
+
+      <input data-ng-model="search.q" id="search" class="animate" type="text">
+      <label  for="search" class="animate">Buscá un tema...</label>
+      <button class="button animate"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+  </form>
+</div>
+
+
 <ul class="list">
   <li class="item" data-ng-repeat="p in playlist" data-ng-click="play(p.id)">
     <span class="title" >{{p.titulo}}</span>

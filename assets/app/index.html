@@ -18,7 +18,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
 <script src="js/angular.audio.js"></script>
-
+<link rel="stylesheet" href="css/ng-animation.css">
 <script
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
@@ -35,7 +35,7 @@
   /**
    * You must include the dependency on 'ngMaterial'
    */
- app= angular.module('directMusic', ['ngRoute','ngAudio']);
+ app= angular.module('directMusic', ['ngAnimate','ngRoute','ngAudio']);
 
 
 
@@ -55,6 +55,20 @@
 
   });
 
+  $( document ).ajaxComplete(ajaxStop);
+  $( document ).ajaxError(ajaxStop);
+  $( document ).ajaxStart(ajaxStart);
+  function ajaxStart( event, request, settings ) {
+    $(".loader").addClass("fadeIn");
+    $("button").attr("disabled","true");
+  }
+  function ajaxStop()
+  {    $(".loader").removeClass("fadeIn");
+    $("button").removeAttr("disabled");
+  }
+
+
+
 </script>
 
 <script src="controllers/homeController.js"></script>
@@ -63,7 +77,13 @@
 <section class="main-container" data-ng-view>
 
 </section>
-<footer class="fixed-bottom" data-ng-if="player.src" data-ng-include="'views/player.html'"></footer>
+<footer data-ng-class="{'active' : animation == currentAnimation}" class="fixed-bottom slide-top" data-ng-if="player.canPlay==true" data-ng-include="'views/player.html'"></footer>
+
+<div class="loader">
+  <svg class="spinner" width="85px" height="85px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+  </svg>
+</div>
 
 </body>
 </html>
