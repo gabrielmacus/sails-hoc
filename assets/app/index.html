@@ -31,6 +31,7 @@
 <!-- Your application bootstrap  -->
 <script type="text/javascript">
 
+
   function error(err) {
 
     alert("Hubo un error, que esperabas, es una app de prueba");
@@ -40,6 +41,12 @@
    * You must include the dependency on 'ngMaterial'
    */
  app= angular.module('directMusic', ['ngAnimate','ngRoute','ngAudio']);
+  $(document).scroll(
+    function () {
+
+      console.log($("body").offset());
+    }
+  );
 
 
   app.controller('directMusicController', function($rootScope, $location,$timeout) {
@@ -102,11 +109,7 @@
   {    $(".loader").removeClass("fadeIn");
     $("button").removeAttr("disabled");
   }
-  $(document).on("scroll","body",function () {
 
-    console.log($(document).offset());
-
-  });
 
 
 
