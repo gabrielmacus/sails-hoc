@@ -10,8 +10,8 @@
   </div>
 
 
-  <ul class="list">
-    <li class="item" data-ng-repeat="p in playlist" data-ng-click="play(p.id)">
+  <ul  class="list " data-ng-if="playlist.length > 0">
+    <li   class="item slide-left" data-ng-repeat="p in playlist" data-ng-click="play(p.id)">
       <span class="title" >{{p.titulo}}</span>
       <!--
       <div class="icon play">
@@ -22,7 +22,12 @@
         <img data-ng-src="{{p.thumbnail}}" class="fit">
       </div>
     </li>
+
+
   </ul>
 
+  <p class="no-songs" data-ng-if="!playlist || playlist.length==0">
+    No hay canciones para reproducir
+  </p>
 
 </div>

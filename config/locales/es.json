@@ -15,6 +15,8 @@
   "usuario.noAutenticado":"Debe ingresar a su cuenta para realizar dicha acción",
   "usuario.datosIncorrectos":"Los datos de ingreso son incorrectos",
   "usuario.inactivo":"El usuario solicitado no se encuentra activo",
-  "usuario.sesionInvalida":"La sesión es inválida. Ingrese de nuevo"
+  "usuario.sesionInvalida":"La sesión es inválida. Ingrese de nuevo",
+  "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde"
+
 
 }

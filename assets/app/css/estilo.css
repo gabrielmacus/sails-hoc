@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
 .container
 {
   padding: 20px;
@@ -23,7 +25,7 @@ html,body
 
   margin: 0;
   margin-bottom: 80px;
-  margin-top: 80px;
+  margin-top: 70px;
   width: 100%;
   float: left;
   padding: 10px;
@@ -165,32 +167,36 @@ html,body
 .audio-player .transcurrido
 {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   left: 10px;
+
 }
 .audio-player .duracion
 {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   right: 10px;
 }
 .audio-player .progress-bar
 {
-  height: 4px;
+  height: 7px;
   left: 0;
   background: #21c6a0;
   width: 0%;
   float: left;
   position: absolute;
-  bottom: 0px;
+  top: 0px;
 }
 .audio-player .controls
 {
   text-align: center;
+  position: relative;
+  top:22px;
+
 }
 .audio-player .controls .play,.audio-player .controls .rewind,.audio-player .controls .forward,.audio-player .controls .pause
 {
-  font-size: 25px;
+  font-size: 22px;
   position: relative;
   /* bottom: 15px; */
   top: 13px;
@@ -324,6 +330,7 @@ html,body
 }
 .loader
 {
+  z-index:1000;
   background-color: rgba(0, 0, 0, 0.47);
   overflow: hidden;
   width: 100%;
@@ -348,9 +355,16 @@ html,body
 .playlist > .fixed-top .form-block input
 {
   width: 75%;
-  top:20px;
+  top:19px;
   position: relative;
+  border-bottom: 0;
 }
+.playlist > .fixed-top .form-block input:focus
+{
+  border-bottom: 2px #16af8c solid;
+}
+
+
 .playlist > .fixed-top  .form-block .button
 {
   width: 25%;
@@ -360,4 +374,25 @@ html,body
   padding: 0px;
   padding-left: 10px;
   padding-right: 10px;
+
+
 }
+.playlist .fixed-top
+{
+  z-index: 3;
+  background: white;
+}
+.no-songs
+{
+  float: left;
+  width: 100%;
+  display: block;
+  position: relative;
+  top: 100px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 40px;
+}
+
+

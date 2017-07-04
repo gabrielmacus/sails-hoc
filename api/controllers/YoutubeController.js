@@ -14,21 +14,50 @@ module.exports=
   ,
   getLink: function (req,res) {
 
-    var video = youtubedl(`http://www.youtube.com/watch?v=${req.param("video")}`);
-    video.on('info', function(info) {
 
 
+      var video = youtubedl(`http://www.youtube.com/watch?v=${req.param("video")}`);
+      video.on('info', function(info) {
 
-    var audio=  info.formats.filter(
-        function(el){
-          return el.format.includes("audio only")
+
+        var arr=info.formats.filter(
+          function(el){
+            return el.format.includes("audio only")
+          }
+        );
+
+        if(arr.length==0 & info.formats.length>0)
+        {
+
+          arr= [info.formats[0]];
         }
-      )[0];
+
+        if(arr.length>0)
+        {
+          var audio=  arr[0];
 
 
-      res.json(audio.url);
+          if(audio)
+          {
+            res.json(audio.url);
+          }
+          else
+          {
+            res.serverError(res.i18n("youtube.errorLink"));
+          }
+
+        }
+        else
+        {
+          res.serverError(res.i18n("youtube.errorLink"));
+        }
 
 
-    });
+
+
+      });
+
+
+
   }
 }

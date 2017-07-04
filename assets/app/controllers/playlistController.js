@@ -20,8 +20,7 @@ app.controller('playlistController', function($rootScope, $location,ngAudio) {
 
 
           $rootScope.player = ngAudio.load(res);
-
-          console.log($rootScope.player);
+          
           $rootScope.$apply();
 
         },

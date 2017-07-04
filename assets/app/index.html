@@ -12,11 +12,15 @@
 
 
 <!-- Angular Material requires Angular.js Libraries -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
+
+
+
 <script src="js/angular.audio.js"></script>
 <link rel="stylesheet" href="css/ng-animation.css">
 <script
@@ -24,9 +28,9 @@
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
 
-
 <!-- Your application bootstrap  -->
 <script type="text/javascript">
+
   function error(err) {
 
     alert("Hubo un error, que esperabas, es una app de prueba");
@@ -38,7 +42,15 @@
  app= angular.module('directMusic', ['ngAnimate','ngRoute','ngAudio']);
 
 
-  app.controller('directMusicController', function($rootScope, $location) {
+  app.controller('directMusicController', function($rootScope, $location,$timeout) {
+
+    $rootScope.audio = {
+      value: 100,
+      options: {
+        floor: 0,
+        ceil: 500
+      }
+    };
 
     $rootScope.search=function () {
 
@@ -95,19 +107,22 @@
 
 </script>
 
+
 <script src="controllers/homeController.js"></script>
 <script src="controllers/playlistController.js"></script>
 
 <section class="main-container" data-ng-view>
 
 </section>
-<footer data-ng-class="{'active' : animation == currentAnimation}" class="fixed-bottom slide-top" data-ng-if="player.canPlay==true" data-ng-include="'views/player.html'"></footer>
+<footer class="fixed-bottom slide-top" data-ng-if="player.canPlay==true" data-ng-include="'views/player.html'"></footer>
 
 <div class="loader">
   <svg class="spinner" width="85px" height="85px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
   </svg>
 </div>
+
+
 
 </body>
 </html>
