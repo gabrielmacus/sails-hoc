@@ -41,17 +41,18 @@
    * You must include the dependency on 'ngMaterial'
    */
  app= angular.module('directMusic', ['ngAnimate','ngRoute','ngAudio']);
-  $("body").on("scroll",
-    function (e) {
-      console.log("SCR");
-      var elem = $(e.currentTarget);
-      if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight())
-      {
-        console.log("bottom");
-      }
+  window.onscroll = function() {
+    var d = document.documentElement;
+    var offset = d.scrollTop + window.innerHeight;
+    var height = d.offsetHeight;
 
+    console.log('offset = ' + offset);
+    console.log('height = ' + height);
+
+    if (offset === height) {
+      console.log('At the bottom');
     }
-  );
+  };
 
 
   app.controller('directMusicController', function($rootScope, $location,$timeout) {

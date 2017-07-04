@@ -11,7 +11,7 @@
 
 
   <ul  class="list " data-ng-if="playlist.length > 0">
-    <li   class="item slide-left" data-ng-repeat="p in playlist" data-ng-click="play(p.id)">
+    <li onscroll="javascript:alert('a')"   class="item slide-left" data-ng-repeat="p in playlist" data-ng-click="play(p.id)">
       <span class="title" >{{p.titulo}}</span>
       <!--
       <div class="icon play">
