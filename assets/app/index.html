@@ -31,6 +31,7 @@
 <!-- Your application bootstrap  -->
 <script type="text/javascript">
 
+  var mainUrl="http://939d8211.ngrok.io";
 
   function error(err) {
 
@@ -41,42 +42,76 @@
    * You must include the dependency on 'ngMaterial'
    */
  app= angular.module('directMusic', ['ngAnimate','ngRoute','ngAudio']);
-  window.onscroll = function() {
-    var d = document.documentElement;
-    var offset = d.scrollTop + window.innerHeight;
-    var height = d.offsetHeight;
 
-    console.log('offset = ' + offset);
-    console.log('height = ' + height);
 
-    if (offset === height) {
-      console.log('At the bottom');
-    }
-  };
-
+var scope;
 
   app.controller('directMusicController', function($rootScope, $location,$timeout) {
 
-    $rootScope.audio = {
-      value: 100,
-      options: {
-        floor: 0,
-        ceil: 500
-      }
-    };
+    scope=$rootScope;
 
-    $rootScope.search=function () {
+    if(!$rootScope.playlist)
+    {
+      $rootScope.playlist=[];
+    }
+
+    if(!$rootScope.search)
+    {
+      $rootScope.search={};
+    }
+
+    $(document).on("scroll",
+      function() {
+
+
+        var scrolled=$(window).innerHeight()+$(document).scrollTop()+10;
+
+        $rootScope.scrolled =scrolled;
+        $rootScope.outer=$(document).outerHeight();
+
+        if(scrolled>=$(document).outerHeight()&& $rootScope.search)
+        {
+
+          $rootScope.search.p++;
+            $rootScope.searchSong();
+        }
+
+        setTimeout(
+          function () {
+            $rootScope.$apply();
+          }
+        );
+
+      }
+    );
+
+
+    $rootScope.searchSong=function (cleanSearch) {
+
+      if(!$rootScope.search.p || cleanSearch)
+      {
+        $rootScope.search.p=1
+      }
 
       $.ajax(
         {
           method:"get",
           dataType:"json",
-          url:"http://localhost:1337/youtube/search",
+          url:mainUrl+"/youtube/search",
           data:$rootScope.search,
           success:function (res) {
 
-            $rootScope.playlist= res;
-            $location.path( "/playlist" );
+            if(! $rootScope.songList || cleanSearch)
+            {
+              $rootScope.songList= res;
+
+            }
+            else
+            {
+              $.merge($rootScope.songList,res);
+            }
+
+            $location.path( "/songlist" );
             $rootScope.$apply();
 
           },
@@ -95,10 +130,10 @@
         templateUrl : "views/home.html",
         controller:"homeController"
       }).
-      when("/playlist",
+      when("/songlist",
       {
-        templateUrl:"views/playlist.html",
-        controller:"playlistController"
+        templateUrl:"views/songlist.html",
+        controller:"songListController"
 
       })
 
@@ -123,11 +158,14 @@
 
 
 <script src="controllers/homeController.js"></script>
-<script src="controllers/playlistController.js"></script>
+<script src="controllers/songListController.js"></script>
 
 <section class="main-container" data-ng-view>
 
 </section>
+
+<h3>{{scrolled}}</h3>
+<h3>{{outer}}</h3>
 <footer class="fixed-bottom slide-top" data-ng-if="player.canPlay==true" data-ng-include="'views/player.html'"></footer>
 
 <div class="loader">

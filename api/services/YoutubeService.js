@@ -5,12 +5,12 @@ var cheerio = require("cheerio");
 const request = require("request");
 module.exports=
 {
-  search:function(q,callback)
+  search:function(q,p,callback)
   {
 
 
 
-    request(`https://www.youtube.com/results?search_query=${q}&sp=EgIQAQ%253D%253D`, function(error, response, body) {
+    request(`https://www.youtube.com/results?search_query=${q}&p=${p}&sp=EgIQAQ%253D%253D`, function(error, response, body) {
 
       if(error)
       {

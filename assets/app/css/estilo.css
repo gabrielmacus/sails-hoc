@@ -16,7 +16,6 @@
 html,body
 {
   width: 100%;
-  height: 100%;
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
@@ -156,7 +155,6 @@ html,body
 .main-container
 {
   width: 100%;
-  height: 100%;
 }
 .audio-player
 {
@@ -354,24 +352,24 @@ html,body
   transition: visibility 0s linear 0s, opacity 300ms;
 }
 
-.playlist > .fixed-top .form-block input
+.songlist > .fixed-top .form-block input
 {
   width: 75%;
   top:19px;
   position: relative;
   border-bottom: 2px transparent solid;
 }
-.playlist > .fixed-top .form-block input:focus,.playlist > .fixed-top .form-block input.ng-not-empty
+.songlist > .fixed-top .form-block input:focus,.songlist > .fixed-top .form-block input.ng-not-empty
 {
   border-bottom: 2px #16af8c solid;
 }
 
 
-.playlist > .fixed-top  .form-block .button
+.songlist > .fixed-top  .form-block .button
 {
   width: 25%;
 }
-.playlist > .fixed-top .container
+.songlist > .fixed-top .container
 {
   padding: 0px;
   padding-left: 10px;
@@ -379,7 +377,7 @@ html,body
 
 
 }
-.playlist .fixed-top
+.songlist .fixed-top
 {
   z-index: 3;
   background: white;

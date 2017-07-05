@@ -1,0 +1,38 @@
+<div class="songlist">
+  <div class="fixed-top">
+    <form data-ng-submit="searchSong(true)" class="container">
+      <div class="form-block">
+
+        <input data-ng-model="search.q" id="search" class="animate" type="text" placeholder="Buscá un tema...">
+        <button class="button animate"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </div>
+    </form>
+  </div>
+
+
+  <ul  class="list " data-ng-if="songList.length > 0">
+    <li class="item slide-left" data-ng-repeat="p in songList" data-ng-click="play(p.id)">
+
+        <span class="title" >{{p.titulo}}</span>
+        <!--
+        <div class="icon play">
+          <i class="fa fa-play " aria-hidden="true"></i>
+        </div>
+        -->
+
+        <div class="thumbnail">
+          <img data-ng-src="{{p.thumbnail}}" class="fit">
+        </div>
+
+
+
+    </li>
+
+
+  </ul>
+
+  <p class="no-songs" data-ng-if="!songList || songList.length==0">
+    No hay canciones para reproducir
+  </p>
+
+</div>

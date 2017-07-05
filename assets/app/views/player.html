@@ -6,14 +6,15 @@
 
   <span class="duracion" data-ng-bind="getTime(player.duration)"></span>
 
-  <span data-ng-style="{ 'width': (player.progress*100) + '%' }"class="progress-bar animate"></span>
+  <span data-ng-style="{ 'width': (player.progress*100) + '%' }"class="progress-bar "></span>
 
   <div class="controls">
     <span class="rewind"><i class="fa fa-fast-backward" aria-hidden="true"></i></span>
     <span class="play" data-ng-if="player.paused" data-ng-click="player.play()"><i class="fa fa-play" aria-hidden="true"></i></span>
     <span class="pause" data-ng-if="!player.paused" data-ng-click="player.pause()"><i class="fa fa-pause" aria-hidden="true"></i></span>
     <span class="forward"><i class="fa fa-fast-forward" aria-hidden="true"></i></span>
-
   </div>
+
+
 
 </div>

@@ -5,7 +5,7 @@ var youtubedl = require('youtube-dl');
 module.exports=
 {
   search: function (req,res) {
-    YoutubeService.search(req.param("q"), function (result) {
+    YoutubeService.search(req.param("q"),req.param("p"),function (result) {
 
       res.json(result);
 

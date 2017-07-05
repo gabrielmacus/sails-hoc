@@ -3,7 +3,21 @@
  */
 
 
-app.controller('playlistController', function($rootScope, $location,ngAudio) {
+app.controller('songListController', function($rootScope, $location,ngAudio) {
+
+  $rootScope.$watchCollection('playlist', function(playlistNueva,playlistVieja) {
+
+    var l = playlistNueva.length;
+    if(l>0)
+    {
+
+      var lastSong=playlistNueva[l-1];
+      $rootScope.player = ngAudio.play(lastSong);
+      console.log(lastSong);
+
+    }
+
+  });
   if(! $rootScope.player)
   {
     $rootScope.player={};
@@ -15,12 +29,13 @@ app.controller('playlistController', function($rootScope, $location,ngAudio) {
       {
         method:"get",
         dataType:"json",
-      url:"http://localhost:1337/youtube/link/"+id,
+      url:mainUrl+"/youtube/link/"+id,
         success:function (res) {
+          //$rootScope.player = ngAudio.load(res);
+        //  console.log($rootScope.player);
 
+          $rootScope.playlist.push(res);
 
-          $rootScope.player = ngAudio.load(res);
-          
           $rootScope.$apply();
 
         },
