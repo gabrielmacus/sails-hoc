@@ -65,7 +65,7 @@ app.controller('songListController', function($rootScope, $location,ngAudio) {
 
          // $rootScope.playlist.push(res);
 
-          $rootScope.player.play(res);
+          $rootScope.player= ngAudio.play(res);
 
 
           $rootScope.$apply();
