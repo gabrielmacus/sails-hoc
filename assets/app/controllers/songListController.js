@@ -5,12 +5,6 @@
 
 app.controller('songListController', function($rootScope, $location,ngAudio) {
 
-
-  $rootScope.$watch('player',function (a,b) {
-
-    console.log(a);
-    console.log(b);
-  });
   /*
   $rootScope.$watchCollection('playlist', function(playlistNueva,playlistVieja) {
 
@@ -66,8 +60,8 @@ app.controller('songListController', function($rootScope, $location,ngAudio) {
          // $rootScope.playlist.push(res);
 
           $rootScope.player= ngAudio.play(res);
-
-
+          $rootScope.player.loadedSong = p.id;
+          p.selected=false;
           $rootScope.$apply();
 
         },

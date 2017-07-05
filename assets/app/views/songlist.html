@@ -24,7 +24,7 @@
 
        <div class="thumbnail">
          <img data-ng-src="{{p.thumbnail}}" class="fit">
-               <span class="playing-now">
+               <span class="playing-now scale-fade"  data-ng-if="player.loadedSong==p.id && !player.paused">
  <i class="fa fa-play" aria-hidden="true"></i>
       </span>
        </div>
@@ -32,7 +32,7 @@
 
       <div class="back animate">
 
-      <span class="controls">
+      <span class="controls ">
           <span class="play action" data-ng-click="play(p)">
           <i class="fa fa-play" aria-hidden="true"></i>
         </span>
