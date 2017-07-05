@@ -10,28 +10,50 @@
   </div>
 
 
-  <ul  class="list " data-ng-if="songList.length > 0">
-    <li class="item slide-left" data-ng-repeat="p in songList" data-ng-click="play(p.id)">
-
-        <span class="title" >{{p.titulo}}</span>
-        <!--
-        <div class="icon play">
-          <i class="fa fa-play " aria-hidden="true"></i>
-        </div>
-        -->
-
-        <div class="thumbnail">
-          <img data-ng-src="{{p.thumbnail}}" class="fit">
-        </div>
+  <ul  class="list " data-ng-if="songList && notEmpty(songList)">
+    <li data-ng-class="p.selected ? 'show-options' : ''" class="item slide-left animated" data-ng-repeat="(k,p) in songList" data-ng-click="toggleSong(p)">
 
 
 
+       <span class="title" >{{p.titulo}}</span>
+       <!--
+       <div class="icon play">
+         <i class="fa fa-play " aria-hidden="true"></i>
+       </div>
+       -->
+
+       <div class="thumbnail">
+         <img data-ng-src="{{p.thumbnail}}" class="fit">
+               <span class="playing-now">
+        Reproduciendo ahora <i class="fa fa-play" aria-hidden="true"></i>
+      </span>
+       </div>
+
+
+      <div class="back animate">
+
+      <span class="controls">
+          <span class="play action" data-ng-click="play(p)">
+          <i class="fa fa-play" aria-hidden="true"></i>
+        </span>
+
+        <span class="playlist-add action">
+    <i class="fa fa-list" aria-hidden="true"></i>
+
+<i class="fa fa-plus" aria-hidden="true"></i>
+
+
+        </span>
+      </span>
+
+
+      </div>
     </li>
 
 
   </ul>
 
-  <p class="no-songs" data-ng-if="!songList || songList.length==0">
+  <p class="no-songs" data-ng-if="!songList || !notEmpty(songList)">
     No hay canciones para reproducir
   </p>
 

@@ -31,7 +31,7 @@
 <!-- Your application bootstrap  -->
 <script type="text/javascript">
 
-  var mainUrl="http://939d8211.ngrok.io";
+  var mainUrl="http://localhost:1337";
 
   function error(err) {
 
@@ -64,7 +64,7 @@ var scope;
       function() {
 
 
-        var scrolled=$(window).innerHeight()+$(document).scrollTop()+10;
+        var scrolled=$(window).innerHeight()+$(document).scrollTop()+56;//Los pixeles extra son para mobile, por la barra presumiblemente
 
         $rootScope.scrolled =scrolled;
         $rootScope.outer=$(document).outerHeight();
@@ -108,7 +108,7 @@ var scope;
             }
             else
             {
-              $.merge($rootScope.songList,res);
+              $.extend($rootScope.songList,res);
             }
 
             $location.path( "/songlist" );

@@ -22,7 +22,7 @@ module.exports=
 
       var $ = cheerio.load(body);
 
-      var videos=[];
+      var videos={};
 
       $(".yt-lockup").each(function() {
         var titulo = $(this).find(".yt-lockup-content .yt-lockup-title  > a").text();
@@ -31,7 +31,9 @@ module.exports=
         id = id.split("=");
         id = id[id.length-1];
         var thumbnail=`http://img.youtube.com/vi/${id}/0.jpg`;
-        videos.push({titulo:titulo,id:id,thumbnail:thumbnail});
+
+        var video={titulo:titulo,id:id,thumbnail:thumbnail};
+        videos[id]=video;
       });
 
 

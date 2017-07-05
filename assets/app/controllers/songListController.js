@@ -5,6 +5,13 @@
 
 app.controller('songListController', function($rootScope, $location,ngAudio) {
 
+
+  $rootScope.$watch('player',function (a,b) {
+
+    console.log(a);
+    console.log(b);
+  });
+  /*
   $rootScope.$watchCollection('playlist', function(playlistNueva,playlistVieja) {
 
     var l = playlistNueva.length;
@@ -12,18 +19,40 @@ app.controller('songListController', function($rootScope, $location,ngAudio) {
     {
 
       var lastSong=playlistNueva[l-1];
-      $rootScope.player = ngAudio.play(lastSong);
-      console.log(lastSong);
+      $rootScope.player = ngAudio.load(lastSong);
+      $rootScope.player.play(
+        function () {
+
+
+
+        }
+      );
+
+      $rootScope.player.complete();
+      console.log( $rootScope.player );
 
     }
 
   });
+  */
   if(! $rootScope.player)
   {
     $rootScope.player={};
   }
+  $rootScope.notEmpty=function (obj) {
+    for(var prop in obj) {
+      if(obj.hasOwnProperty(prop))
+        return true;
+    }
 
-  $rootScope.play=function (id) {
+    return JSON.stringify(obj) !== JSON.stringify({});
+
+
+  }
+  $rootScope.play=function (p) {
+
+    var id =p.id
+    p.selected=false;
 
     $.ajax(
       {
@@ -34,7 +63,10 @@ app.controller('songListController', function($rootScope, $location,ngAudio) {
           //$rootScope.player = ngAudio.load(res);
         //  console.log($rootScope.player);
 
-          $rootScope.playlist.push(res);
+         // $rootScope.playlist.push(res);
+
+          $rootScope.player.play(res);
+
 
           $rootScope.$apply();
 
@@ -45,6 +77,18 @@ app.controller('songListController', function($rootScope, $location,ngAudio) {
 
   }
 
+  $rootScope.toggleSong=function(p)
+  {
+    if(!p.selected)
+    {
+      p.selected=true;
+    }
+    else
+    {
+      p.selected=false;
+    }
+
+  };
 
   $rootScope.end=function () {
     console.log("data");
