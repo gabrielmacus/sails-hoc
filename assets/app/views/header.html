@@ -1,0 +1,29 @@
+
+<div class="header-controls animate">
+  <span data-ng-click="toggleMenu()"  class="hamburguesa"><i class="fa fa-bars" aria-hidden="true"></i></span>
+  <span data-ng-click="toggleSearch()" class="search"><i class="fa fa-search" aria-hidden="true"></i></span>
+</div>
+
+
+  <form data-ng-submit="searchSong(true)" class="container slide-down" data-ng-if="searching">
+    <div class="form-block">
+
+    <span class="back" data-ng-click="toggleSearch()"> <i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+
+      <input data-ng-model="search.q" id="search" class="animate" type="text" placeholder="Buscá un tema...">
+    </div>
+  </form>
+  <!--
+  <div class="fixed-top">
+
+    <form data-ng-submit="searchSong(true)" class="container">
+      <div class="form-block">
+
+        <input data-ng-model="search.q" id="search" class="animate" type="text" placeholder="Buscá un tema...">
+        <button class="button animate"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </div>
+    </form>
+  </div>
+  -->
+
+

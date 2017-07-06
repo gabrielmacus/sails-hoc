@@ -5,6 +5,31 @@
 
 app.controller('songListController', function($rootScope, $location,ngAudio) {
 
+  if(!$rootScope.playlists)
+  {
+    $rootScope.playlists={};
+  }
+
+  $rootScope.addToPlaylist=function(song,playlist)
+  {
+
+    if(!playlist)
+    {
+      //Lista de reproduccion temporal
+      playlist="tmp"
+    }
+
+    if(! $rootScope.playlists[playlist])
+    {
+      $rootScope.playlists[playlist]={};
+    }
+    $rootScope.playlists[playlist][song.id]=song;
+
+    $rootScope.toastText="Agregado a la lista de reproducción";
+    showToast();
+
+  }
+
   /*
   $rootScope.$watchCollection('playlist', function(playlistNueva,playlistVieja) {
 
@@ -45,7 +70,7 @@ app.controller('songListController', function($rootScope, $location,ngAudio) {
   }
   $rootScope.play=function (p) {
 
-    var id =p.id
+    var id =p.id;
     p.selected=false;
 
     $.ajax(

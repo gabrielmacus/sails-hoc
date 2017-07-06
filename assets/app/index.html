@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/estilo.css">
 </head>
-<body  data-ng-controller="directMusicController" data-ng-app="directMusic"  data-ng-cloak >
+<body data-ng-class="menuOpen ? 'active' : ''" class="item slide-left animated"  data-ng-controller="directMusicController" data-ng-app="directMusic"  data-ng-cloak >
 
 
 <!-- Angular Material requires Angular.js Libraries -->
@@ -50,6 +50,9 @@ var scope;
 
     scope=$rootScope;
 
+    $rootScope.toggleSearch=function () {
+      $rootScope.searching=!$rootScope.searching;
+    }
     if(!$rootScope.playlist)
     {
       $rootScope.playlist=[];
@@ -58,6 +61,11 @@ var scope;
     if(!$rootScope.search)
     {
       $rootScope.search={};
+    }
+
+    $rootScope.toggleMenu=function () {
+      console.log("Menu toggled");
+      $rootScope.menuOpen=!$rootScope.menuOpen;
     }
 
     $(document).on("scroll",
@@ -154,26 +162,44 @@ var scope;
 
 
 
+  function showToast() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar")
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 700);
+  }
+  $(document).on("click",".hamburguesa",function() {
+
+    $("body").toggleClass("active");
+  });
 </script>
 
 
 <script src="controllers/homeController.js"></script>
 <script src="controllers/songListController.js"></script>
 
-<section class="main-container" data-ng-view>
+<div class="navbar-container animate" data-ng-include="'views/navbar.html'"></div>
 
-</section>
+<div class="body animate">
+  <header class="header" data-ng-include="'views/header.html'"></header>
 
-<h3>{{scrolled}}</h3>
-<h3>{{outer}}</h3>
-<footer class="fixed-bottom slide-top" data-ng-if="player.canPlay==true" data-ng-include="'views/player.html'"></footer>
+  <section class="main-container animate" data-ng-view>
 
+  </section>
+  <footer class="fixed-bottom slide-top" data-ng-if="player.canPlay==true" data-ng-include="'views/player.html'"></footer>
+
+</div>
 <div class="loader">
   <svg class="spinner" width="85px" height="85px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
   </svg>
 </div>
-
+<!-- The actual snackbar -->
+<div id="snackbar">{{toastText}}</div>
 
 
 </body>

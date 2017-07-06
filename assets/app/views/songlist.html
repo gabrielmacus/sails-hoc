@@ -1,14 +1,4 @@
 <div class="songlist">
-  <div class="fixed-top">
-    <form data-ng-submit="searchSong(true)" class="container">
-      <div class="form-block">
-
-        <input data-ng-model="search.q" id="search" class="animate" type="text" placeholder="Buscá un tema...">
-        <button class="button animate"><i class="fa fa-search" aria-hidden="true"></i></button>
-      </div>
-    </form>
-  </div>
-
 
   <ul  class="list " data-ng-if="songList && notEmpty(songList)">
     <li data-ng-class="p.selected ? 'show-options' : ''" class="item slide-left animated" data-ng-repeat="(k,p) in songList" data-ng-click="toggleSong(p)">
@@ -37,7 +27,7 @@
           <i class="fa fa-play" aria-hidden="true"></i>
         </span>
 
-        <span class="playlist-add action">
+        <span class="playlist-add action" data-ng-click="addToPlaylist(p)">
     <i class="fa fa-list" aria-hidden="true"></i>
 
 <i class="fa fa-plus" aria-hidden="true"></i>
