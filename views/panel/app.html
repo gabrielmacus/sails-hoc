@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Panel</title>
+
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/css/uikit.min.css" />
+
+  <!-- jQuery is required -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- UIkit JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit-icons.min.js"></script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+
+
+  <style>
+    .white
+    {
+      background-color: white;
+    }
+    .opacity-70
+    {
+      opacity: 0.7;
+    }
+    .valign
+    {
+      align-items:center;height: 100%;
+    }
+  </style>
+  <!--STYLES-->
+  <link rel="stylesheet" href="/styles/importer.css">
+  <link rel="stylesheet" href="/styles/normalize.css">
+  <link rel="stylesheet" href="/styles/reset.css">
+  <!--STYLES END-->
+</head>
+
+<body data-ng-controller="ctrl" data-ng-app="app" class="panel">
+<style>
+
+  body,html
+  {
+    font-family: 'Roboto', sans-serif;
+
+    height: 100%;
+    width: 100%;
+  }
+  body > section
+  {
+    width: 100%;
+    height: 100%;
+  }
+  .sidebar-container
+  {
+    float: left;
+    height: 100%;
+    width: 30%;
+  }
+  .sidebar
+  {
+    width: 100%;
+   min-height: 100%;
+
+  }
+
+</style>
+
+<div data-ng-if="usuario" class="sidebar-container uk-hidden@s uk-hidden@m uk-visible@l	uk-visible@xl ">
+  <nav class="sidebar ">
+    <a>adsasd</a>
+    <a>sdsadsds</a>
+  </nav>
+
+</div>
+<section class="uk-section "   data-ng-view>
+
+
+</section>
+
+
+<!-- Controllers -->
+<script src="/js/controllers/panel/mainController.js"></script>
+<script src="/js/controllers/panel/loginController.js"></script>
+<script src="/js/controllers/panel/dashController.js"></script>
+<!-- ---->
+
+<script>
+
+  app.config(function($routeProvider) {
+
+    $routeProvider
+      .when("/", {
+        templateUrl:'/views/login.html',
+        controller:"loginController"
+      }).
+    when("/dash",
+      {
+        templateUrl:'/views/dash.html',
+        controller:'dashController'
+
+      })/*.
+     when("/<%= res.i18n("panel.seccionesRuta")%>",
+     {
+     template:document.querySelector("#page-2").innerHTML
+     })
+     */
+  });
+
+</script>
+
+</body>
+</html>

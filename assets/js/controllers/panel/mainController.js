@@ -17,6 +17,7 @@ app.controller('ctrl', function($rootScope, $http) {
       .then(function (res, status, headers, config) {
 
         $rootScope.usuario=res.data;
+        console.log($rootScope.usuario);
 
       },function () {
 
