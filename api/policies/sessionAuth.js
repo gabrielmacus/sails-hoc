@@ -16,6 +16,7 @@ module.exports = function(req, res, next) {
   }*/
 
 
+
   WebTokenService.verificarToken(req.cookies._tk,function(err,result) {
 
     if(err)

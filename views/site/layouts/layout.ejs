@@ -36,8 +36,19 @@
     <!--STYLES END-->
   </head>
 
-  <body class="<%= bodyClasses.join(" ") %>">
+  <body data-ng-app="app" data-ng-controller="ctrl" class="<%= bodyClasses.join(" ") %>">
 
+  <!-- Controllers -->
+  <script src="/js/controllers/site/mainController.js"></script>
+  <script src="/js/controllers/site/loginController.js"></script>
+
+
+  <!--- ->
+
+
+  <header>
+    <%- partial('../comun/navegacion.ejs') %>
+  </header>
   <section>
     <%- body %>
   </section>
@@ -45,6 +56,10 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/controllers/panel/loginController.js"></script>
+    <script src="/js/controllers/panel/mainController.js"></script>
+    <script src="/js/controllers/site/loginController.js"></script>
+    <script src="/js/controllers/site/mainController.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

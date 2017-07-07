@@ -52,6 +52,15 @@ module.exports.policies = {
   UsuarioController:
   {
     registrar:['noRegistrado']
+
+  },
+  PerfilController:
+  {
+    index:['sessionAuth']
+  },
+  ClasificadoController:
+  {
+    save:['sessionAuth']
   }
 
 

@@ -16,7 +16,22 @@
   "usuario.datosIncorrectos":"Los datos de ingreso son incorrectos",
   "usuario.inactivo":"El usuario solicitado no se encuentra activo",
   "usuario.sesionInvalida":"La sesión es inválida. Ingrese de nuevo",
-  "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde"
+  "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde",
+
+  "clasificado.seleccionarSeccion":"Seccioná una sección",
+  "clasificado.completarDatos":"Completá los datos",
+  "clasificado.paso1route":"paso-1",
+  "clasificado.paso2route":"paso-2",
+  "clasificado.paso3route":"paso-3",
+  "clasificado.paso1":"Paso 1",
+  "clasificado.paso2":"Paso 2",
+  "clasificado.paso3":"Paso 3",
+  "clasificado.seccion":"Sección",
+  "clasificado.subseccion":"Subsección",
+  "clasificado.siguiente":"Siguiente",
+
+  "panel.areaRestringida":"Sus permisos son insuficientes para entrar a esta área",
+  "panel.seccionesRuta":"secciones"
 
 
 }

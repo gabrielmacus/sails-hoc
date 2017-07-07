@@ -16,16 +16,21 @@ module.exports=
 */
 
     Seccion.find({
-      pertenece: ['59545e89610a3b1013ce0d25']
+      pertenece: [sails.config.idSeccionPrincipal]
     }).exec(function (err, secciones) {
+
 
       if(err)
       {
+        return res.negotiate(err);
 
+        //   throw err;
       }
+
+
       console.log(secciones);
 
-      res.view('home/index', {layout: 'layouts/layout',bodyClasses:["portada"],secciones:secciones});
+      res.view('site/home/index', {layout: 'site/layouts/layout',bodyClasses:["portada"],secciones:secciones});
 
 
     });

@@ -38,14 +38,21 @@ module.exports.routes = {
   },*/
   'POST /registrar/usuario': 'UsuarioController.registrar',
   'get /confirmar/usuario/:hash':'UsuarioController.confirmar',
+  'get /salir':'UsuarioController.salir',
   'POST /ingresar':'UsuarioController.ingresar',
-
+  'get /perfil':'PerfilController.index',
+  'get /nuevo/clasificado':'ClasificadoController.save',
+  'POST /guardar/clasificado':'ClasificadoController.save',
   'get /':'HomeController.index',
 
   'get /secciones/arbol':'SeccionController.getArbol',
   'get /youtube/link/:video':"YoutubeController.getLink",
 
 
+  'get /admin':"PanelController.index",
+  'POST /admin/ingresar':"UsuarioController.ingresarPanel",
+  
+  'get /views/:view':"PanelController.loadView"
 
 
 

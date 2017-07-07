@@ -1,0 +1,31 @@
+<ul data-ng-controller="menuCtrl">
+  <li data-ng-if="usuario">
+    <div class="menu-usuario">
+      <h2>{{usuario.nombreUsuario}}</h2>
+
+    </div>
+  </li>
+  <li data-ng-if="usuario">
+    <a href="/perfil">Mi perfil</a>
+    <a data-ng-click="salir()">Salir</a>
+  </li>
+</ul>
+<script>
+  app.controller('menuCtrl', function($rootScope, $http) {
+
+    $rootScope.salir=function () {
+
+
+      $http.get('/salir')
+        .then(function (res, status, headers, config) {
+
+          location.href="/";
+
+        },error);
+
+
+    }
+
+
+  });
+</script>

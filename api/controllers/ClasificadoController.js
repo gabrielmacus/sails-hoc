@@ -8,58 +8,61 @@
 module.exports=
 {
 
-  registrar:function(req,res)
-  {
+  'save':
+  function (req,res) {
 
-
-    var usuario=req.allParams();
-
-    usuario.nivel=1;
-
-    Usuario.create(usuario).exec(function (err, records) {
-
-      if(err)
-      {
-        return res.negotiate(err);
-
-        //   throw err;
-      }
-
-      UsuarioService.enviarConfirmacion(req,res,records);
-
-      res.json(records);
-
-    });
-    //UsuarioService.enviarConfirmacion(req,res);
-  },
-  confirmar:function(req,res){
-    var hash= req.param("hash");
-
-    Usuario.update({codigoConfirmacion:hash,estado:1},{estado:2},function(err,result)
+    switch(req.method)
     {
-      if(err)
-      {
-        return res.negotiate(err);
+      case "POST":
 
-      }
 
-      var template="";
+            break;
 
-      if(result.length === 0)
-      {
-        template="yaFueConfirmado";
-      }
-      else
-      {
-        template="exito";
-      }
 
-      res.view(`confirmacionEmail/${template}`,{"usuario":result[0],"layout":'layouts/layout'});
-    });
+      case "GET":
+
+        Seccion.find(
+          {
+
+          },function (err,results) {
+
+
+
+            if(err)
+            {
+              return res.negotiate(err);
+
+              //   throw err;
+            }
+
+            SeccionService.cargarArbolSecciones(results,
+            function (arbol) {
+
+              arbol=arbol.filter(
+                function (el) {
+
+                 return el.id==sails.config.idSeccionPrincipal
+                }
+              );
+
+              arbol  = arbol[0].secciones;
+              
+              res.view('site/posts/guardar', {layout: 'site/layouts/layout',bodyClasses:["clasificado-guardado"],secciones:arbol});
+
+            })
+
+          }
+        );
+
+
+
+
+
+       break;
+
+    }
+
+
   }
-}
-
-module.exports=
-{
 
 }

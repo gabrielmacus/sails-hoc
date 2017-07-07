@@ -57,7 +57,7 @@ module.exports=
       res.view(`confirmacionEmail/${template}`,{"usuario":result[0],"layout":'layouts/layout',"bodyClasses":['usuario-confirmado']});
     });
   },
-  ingresar:function(req,res)
+  ingresar:function(req,res,cb)
   {
 
 
@@ -93,43 +93,57 @@ module.exports=
       function(arg1, arg2, callback) {
 
         //No esta logueado o el token es invalido
-        var hash=crypto.createHash(sails.config.hashAlgo);
-        hash.update(req.param("contrasena"));
-        var contrasena=hash.digest('hex');
-        Usuario.find({or:[{email:req.param("nombreUsuario")},{nombreUsuario:req.param("nombreUsuario")}],contrasena:contrasena},function(err,results){
+
+        if(req.param("contrasena") && req.param("nombreUsuario"))
+        {
+          var hash=crypto.createHash(sails.config.hashAlgo);
+          hash.update(req.param("contrasena"));
+          var contrasena=hash.digest('hex');
+          Usuario.find({or:[{email:req.param("nombreUsuario")},{nombreUsuario:req.param("nombreUsuario")}],contrasena:contrasena},function(err,results){
 
 
-          if(err)
-          {
-            return res.negotiate(err);
+            if(err)
+            {
+              return res.negotiate(err);
 
-            //   throw err;
-          }
-          if (results.length==0) {
-            return res.forbidden(req.__("usuario.datosIncorrectos"));
-          }
+              //   throw err;
+            }
+            if (results.length==0) {
+              return res.forbidden(req.__("usuario.datosIncorrectos"));
+            }
 
-          //No esta activo
-          if(results[0].estado!=2)
-          {
-            return res.forbidden(req.__("usuario.inactivo"));
-          }
+            //No esta activo
+            if(results[0].estado!=2)
+            {
+              return res.forbidden(req.__("usuario.inactivo"));
+            }
 
-          var user = results[0];
-          delete user.contrasena;
-          delete user.codigoConfirmacion;
-          delete user.nivel;
-          delete user.estado;
-          var token=  WebTokenService.generarToken(user);
-
-          console.log(token);
-
-          res.cookie('_tk',token);
-
-          res.json(user);
+            //Lo uso para usuarios de panel
+            cb(results[0]);
 
 
-        });
+
+            var user = results[0];
+            delete user.contrasena;
+            delete user.codigoConfirmacion;
+            delete user.nivel;
+            delete user.estado;
+            var token=  WebTokenService.generarToken(user);
+
+            console.log(token);
+
+            res.cookie('_tk',token);
+
+            res.json(user);
+
+
+          });
+        }
+        else
+        {
+          return res.forbidden(req.__("usuario.datosIncorrectos"));
+        }
+
       }
     ], function (err, result) {
       // result now equals 'done'
@@ -137,10 +151,26 @@ module.exports=
 
 
 
+  },
+  ingresarPanel:function (req,res) {
 
 
+    this.ingresar(req,res,function (usuario) {
+
+      //Chequeo si tiene los permisos suficientes 
+      if(usuario.nivel<sails.config.nivelUsuarioPanel)
+      {
+        return res.forbidden(req.__("usuario.areaRestringida"));
+      }
+
+    });
+
+  },
+  salir:function (req,res) {
 
 
+    res.clearCookie("_tk");
 
+    res.end();
   }
 }

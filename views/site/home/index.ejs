@@ -1,0 +1,32 @@
+<div class="secciones">
+
+  <% if(secciones)
+  {   %>
+
+
+
+  <div class="grilla grilla-secciones">
+    <% secciones.forEach(function (k,v) { %>
+
+
+    <div class="seccion">
+
+      <figure class="responsive" >
+        <img class="cover responsive" src="http://admin.mapucheonline.com/images/car.jpg">
+      </figure>
+
+    </div>
+
+
+    <% }); %>
+  </div>
+  <%
+  }
+  %>
+
+</div>
+
+
+<div class="login">
+  <%- partial('../login/index.ejs') %>
+</div>
