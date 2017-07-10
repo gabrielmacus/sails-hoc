@@ -31,7 +31,9 @@
   "clasificado.siguiente":"Siguiente",
 
   "panel.areaRestringida":"Sus permisos son insuficientes para entrar a esta área",
-  "panel.seccionesRuta":"secciones"
+  "panel.seccionesRuta":"secciones",
+
+  "secciones.noExisten":"No hay secciones disponibles"
 
 
 }

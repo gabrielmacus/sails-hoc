@@ -31,6 +31,7 @@
     "sails": "~0.12.13",
     "sails-disk": "~0.10.9",
     "sails-mongo": "^0.12.2",
+    "semantic-ui": "^2.2.10",
     "youtube-dl": "^1.11.1"
   },
   "scripts": {

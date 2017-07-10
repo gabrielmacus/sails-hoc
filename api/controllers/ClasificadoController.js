@@ -45,9 +45,17 @@ module.exports=
                 }
               );
 
-              arbol  = arbol[0].secciones;
-              
-              res.view('site/posts/guardar', {layout: 'site/layouts/layout',bodyClasses:["clasificado-guardado"],secciones:arbol});
+              if(arbol.length)
+              {
+                arbol  = arbol[0].secciones;
+
+                res.view('site/posts/guardar', {layout: 'site/layouts/layout',bodyClasses:["clasificado-guardado"],secciones:arbol});
+
+              }
+              else
+              {
+                res.badRequest(res.i18n("secciones.noExisten"));
+              }
 
             })
 
