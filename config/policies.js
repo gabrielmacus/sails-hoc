@@ -60,7 +60,23 @@ module.exports.policies = {
   },
   ClasificadoController:
   {
-    save:['sessionAuth']
+    save:['sessionAuth'],
+    edit:['sessionAuth'],
+    create: ['sessionAuth'],
+    delete:['sessionAuth']
+  },
+  PanelController:
+  {
+    '*': ['sessionAuth','tienePermisosPanel']
+  },
+  SeccionController:
+  {
+
+
+    create: ['sessionAuth','tienePermisosPanel'],
+    update:['sessionAuth','tienePermisosPanel'],
+    delete:['sessionAuth','tienePermisosPanel'],
+
   }
 
 

@@ -14,10 +14,7 @@ module.exports=
       console.log(info);
     });
 */
-
-    Seccion.find({
-      pertenece: [sails.config.idSeccionPrincipal]
-    }).exec(function (err, secciones) {
+    SeccionService.verSeccionPrincipal(function (err,seccionPrincipal) {
 
 
       if(err)
@@ -27,13 +24,34 @@ module.exports=
         //   throw err;
       }
 
+      if(!seccionPrincipal)
+      {
+        res.badRequest(res.i18n( "secciones.noExisten"));
+      }
 
-      console.log(secciones);
 
-      res.view('site/home/index', {layout: 'site/layouts/layout',bodyClasses:["portada"],secciones:secciones});
 
+
+      Seccion.find({
+        pertenece: [seccionPrincipal.id]
+      }).exec(function (err, secciones) {
+
+
+        if(err)
+        {
+          return res.negotiate(err);
+
+          //   throw err;
+        }
+
+
+        res.view('site/home/index', {layout: 'site/layouts/layout',bodyClasses:["portada"],secciones:secciones});
+
+
+      });
 
     });
+
 
 
 

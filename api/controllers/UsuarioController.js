@@ -27,7 +27,7 @@ module.exports=
 
       UsuarioService.enviarConfirmacion(req,res,records);
 
-      res.json(records);
+   return   res.json(records);
 
     });
     //UsuarioService.enviarConfirmacion(req,res);
@@ -57,26 +57,24 @@ module.exports=
       res.view(`confirmacionEmail/${template}`,{"usuario":result[0],"layout":'layouts/layout',"bodyClasses":['usuario-confirmado']});
     });
   },
-  ingresar:function(req,res,cb)
+  ingresar:function(req,res,next,cback)
   {
-
 
     async.waterfall([
       function(callback) {
 
         if(req.cookies._tk && (!req.param("nombreUsuario")|| !req.param("contrasena")))
         {
-          console.log(req.cookies._tk);
           WebTokenService.verificarToken(req.cookies._tk,function(err,result){
 
 
             if(err)
             {
-              res.forbidden(res.i18n("usuario.sesionInvalida"));
+            return  res.forbidden(res.i18n("usuario.sesionInvalida"));
             }
             else
             {
-              res.json(result);
+              return  res.json(result);
             }
 
           });
@@ -102,13 +100,7 @@ module.exports=
           Usuario.find({or:[{email:req.param("nombreUsuario")},{nombreUsuario:req.param("nombreUsuario")}],contrasena:contrasena},function(err,results){
 
 
-            if(err)
-            {
-              return res.negotiate(err);
-
-              //   throw err;
-            }
-            if (results.length==0) {
+            if (err || results.length==0) {
               return res.forbidden(req.__("usuario.datosIncorrectos"));
             }
 
@@ -118,23 +110,27 @@ module.exports=
               return res.forbidden(req.__("usuario.inactivo"));
             }
 
-            //Lo uso para usuarios de panel
-            cb(results[0]);
+
+            if(typeof cback == "function")
+            {
+              cback();
+            }
+
+
 
 
 
             var user = results[0];
             delete user.contrasena;
             delete user.codigoConfirmacion;
-            delete user.nivel;
+            //delete user.nivel;
             delete user.estado;
             var token=  WebTokenService.generarToken(user);
 
-            console.log(token);
-
             res.cookie('_tk',token);
+            user.token=token;
 
-            res.json(user);
+            return res.json(user);
 
 
           });
@@ -152,13 +148,12 @@ module.exports=
 
 
   },
+
   ingresarPanel:function (req,res) {
 
-
-    this.ingresar(req,res,function (usuario) {
-
-      //Chequeo si tiene los permisos suficientes 
-      if(usuario.nivel<sails.config.nivelUsuarioPanel)
+    this.ingresar(req,res,function (results) {
+      //Chequeo si tiene los permisos suficientes para ingresar al panel
+      if( results[0].nivel<sails.config.nivelUsuarioPanel)
       {
         return res.forbidden(req.__("usuario.areaRestringida"));
       }
@@ -167,7 +162,6 @@ module.exports=
 
   },
   salir:function (req,res) {
-
 
     res.clearCookie("_tk");
 

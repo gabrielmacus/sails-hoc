@@ -51,7 +51,7 @@ module.exports.routes = {
 
   'get /admin':"PanelController.index",
   'POST /admin/ingresar':"UsuarioController.ingresarPanel",
-  
+
   'get /views/:view':"PanelController.loadView"
 
 

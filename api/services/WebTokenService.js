@@ -5,6 +5,7 @@ var jwt = require('jsonwebtoken');
 
 module.exports.generarToken = function(payload, options) {
   var token = jwt.sign(payload,  sails.config.salt, options);
+
   return token;
 };
 

@@ -1,4 +1,7 @@
+
 <div class="secciones">
+
+
 
   <% if(secciones)
   {   %>
@@ -6,16 +9,22 @@
 
 
   <div class="grilla grilla-secciones">
-    <% secciones.forEach(function (k,v) { %>
+    <a class="seccion">
 
 
-    <div class="seccion">
 
-      <figure class="responsive" >
-        <img class="cover responsive" src="http://admin.mapucheonline.com/images/car.jpg">
+    </a>
+    <% secciones.forEach(function (seccion,k) { %>
+
+    <a class="seccion">
+
+      <figure class="responsive image-container" >
+        <img class="cover responsive" src="<%- seccion.imagen %>">
+        <figcaption class="nombre"><p><%- seccion.nombre %></p></figcaption>
       </figure>
+      <div class="mask animate"></div>
 
-    </div>
+    </a>
 
 
     <% }); %>

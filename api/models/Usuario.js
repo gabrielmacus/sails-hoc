@@ -16,7 +16,8 @@ module.exports = {
     estado:{type:"integer", enum: [1,2],defaultsTo:1}, //1:no activo 2:activo
     codigoConfirmacion:{type:"string",size:100},
     facebookId:{type:"string"},
-    googleId:{type:"string"}
+    googleId:{type:"string"},
+    avatar:{model:"Archivo"}
   },
   beforeCreate:function (values,callback) {
 

@@ -40,6 +40,18 @@ module.exports =
 
 
 
+  },
+  verSeccionPrincipal: function (callback) {
+
+    Seccion.find({principal:true},function (err,result) {
+
+
+      var seccionPrincipal= (result.length>0)?result[0]:false;
+      callback(err,seccionPrincipal);
+
+
+    });
+
   }
 
 };

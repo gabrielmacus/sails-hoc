@@ -35,29 +35,35 @@ module.exports=
               //   throw err;
             }
 
-            SeccionService.cargarArbolSecciones(results,
-            function (arbol) {
+            SeccionService.verSeccionPrincipal(function (seccionPrincipal) {
 
-              arbol=arbol.filter(
-                function (el) {
+      
+              SeccionService.cargarArbolSecciones(results,
+                function (arbol) {
 
-                 return el.id==sails.config.idSeccionPrincipal
-                }
-              );
+                  arbol=arbol.filter(
+                    function (el) {
 
-              if(arbol.length)
-              {
-                arbol  = arbol[0].secciones;
+                      return el.id=seccionPrincipal.id
+                    }
+                  );
 
-                res.view('site/posts/guardar', {layout: 'site/layouts/layout',bodyClasses:["clasificado-guardado"],secciones:arbol});
+                  if(arbol.length)
+                  {
+                    arbol  = arbol[0].secciones;
 
-              }
-              else
-              {
-                res.badRequest(res.i18n("secciones.noExisten"));
-              }
+                    res.view('site/posts/guardar', {layout: 'site/layouts/layout',bodyClasses:["clasificado-guardado"],secciones:arbol});
 
-            })
+                  }
+                  else
+                  {
+                    res.badRequest(res.i18n("secciones.noExisten"));
+                  }
+
+                })
+
+            });
+
 
           }
         );

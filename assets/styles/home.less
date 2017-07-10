@@ -1,10 +1,56 @@
+
+.secciones
+{
+  height: 100%;
+}
+
+.grilla-secciones
+{
+  display: flex;
+  flex-wrap: wrap;
+}
 .portada .grilla-secciones > .seccion
 {
   width: 33.33333%;
   height: 50%;
-  float: left;
+  position: relative;
+}
+.portada .grilla-secciones > .seccion:hover .mask
+{
+  background-color: rgba(0, 0, 0, 0);
+}
+.portada .grilla-secciones > .seccion .mask
+{
+  position: absolute;
+  top:0;
+  right:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index:2;
+}
+.portada .grilla-secciones > .seccion:nth-child(1)
+{
+  background-color: @primaryColor;
+}
+.portada .grilla-secciones > .seccion .nombre
+{
+  font-weight: 300;
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  font-size: 40px;
+  /* padding: 20px; */
+  padding: 5px;
+  background: white;
+text-align: center;
 }
 
+.portada .grilla-secciones > .seccion .image-container
+{
+  display: flex;
+  align-items: center;
+}
 @media screen and  (max-width:1023px)
 {
 

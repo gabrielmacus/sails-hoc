@@ -16,6 +16,7 @@
   "usuario.datosIncorrectos":"Los datos de ingreso son incorrectos",
   "usuario.inactivo":"El usuario solicitado no se encuentra activo",
   "usuario.sesionInvalida":"La sesión es inválida. Ingrese de nuevo",
+
   "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde",
 
   "clasificado.seleccionarSeccion":"Seccioná una sección",
@@ -30,7 +31,7 @@
   "clasificado.subseccion":"Subsección",
   "clasificado.siguiente":"Siguiente",
 
-  "panel.areaRestringida":"Sus permisos son insuficientes para entrar a esta área",
+  "panel.areaRestringida":"Sus permisos son insuficientes para esta área",
   "panel.seccionesRuta":"secciones",
 
   "secciones.noExisten":"No hay secciones disponibles"

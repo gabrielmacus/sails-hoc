@@ -15,9 +15,11 @@ module.exports = function(req, res, next) {
     return next();
   }*/
 
+var token =req.cookies._tk ||req.headers['x-access-token'];
+  
+  WebTokenService.verificarToken(token,function(err,result) {
 
 
-  WebTokenService.verificarToken(req.cookies._tk,function(err,result) {
 
     if(err)
     {
@@ -25,7 +27,7 @@ module.exports = function(req, res, next) {
       // (default res.forbidden() behavior can be overridden in `config/403.js`)
       return res.forbidden(req.__("usuario.noAutenticado"));
     }
-
+    req.session.nivel=result.nivel;
     return next();
   });
 
