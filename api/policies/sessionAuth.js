@@ -16,7 +16,7 @@ module.exports = function(req, res, next) {
   }*/
 
 var token =req.cookies._tk ||req.headers['x-access-token'];
-  
+
   WebTokenService.verificarToken(token,function(err,result) {
 
 
@@ -28,6 +28,7 @@ var token =req.cookies._tk ||req.headers['x-access-token'];
       return res.forbidden(req.__("usuario.noAutenticado"));
     }
     req.session.nivel=result.nivel;
+    req.session.userId=result.id;
     return next();
   });
 

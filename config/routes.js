@@ -40,6 +40,7 @@ module.exports.routes = {
   'get /confirmar/usuario/:hash':'UsuarioController.confirmar',
   'get /salir':'UsuarioController.salir',
   'POST /ingresar':'UsuarioController.ingresar',
+  'get /usuario':"UsuarioController.find",
   'get /perfil':'PerfilController.index',
   'get /nuevo/clasificado':'ClasificadoController.save',
   'POST /guardar/clasificado':'ClasificadoController.save',

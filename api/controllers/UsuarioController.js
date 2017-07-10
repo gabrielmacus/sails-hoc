@@ -7,7 +7,6 @@ const async = require("async");
 
 module.exports=
 {
-
   registrar:function(req,res)
   {
 
@@ -148,7 +147,6 @@ module.exports=
 
 
   },
-
   ingresarPanel:function (req,res) {
 
     this.ingresar(req,res,function (results) {
@@ -166,5 +164,20 @@ module.exports=
     res.clearCookie("_tk");
 
     res.end();
+  },
+  find:function(req,res)
+  {
+    Usuario.find({id:{ '!' :req.session.userId}},function(err,results){
+
+      if(err)
+      {
+        return res.negotiate(err);
+
+      }
+
+      res.json(results);
+
+
+    });
   }
 }
