@@ -16,6 +16,8 @@
   "usuario.datosIncorrectos":"Los datos de ingreso son incorrectos",
   "usuario.inactivo":"El usuario solicitado no se encuentra activo",
   "usuario.sesionInvalida":"La sesión es inválida. Ingrese de nuevo",
+  "usuario.noPuedeCrear":"No tiene los permisos para crear o actualizar usuarios",
+  "usuario.nivelEliminarUsuarios":"No tiene los permisos para eliminar usuarios",
 
   "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde",
 

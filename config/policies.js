@@ -78,10 +78,10 @@ module.exports.policies = {
   },
   UsuarioController:
   {
-    create: ['sessionAuth','tienePermisosPanel'],
+    create: ['sessionAuth','tienePermisosPanel','puedeCrearUsuarios'],
     find:['sessionAuth','tienePermisosPanel'],
-    update:['sessionAuth','tienePermisosPanel'],
-    delete:['sessionAuth','tienePermisosPanel']
+    update:['sessionAuth','tienePermisosPanel','puedeCrearUsuarios'],
+    delete:['sessionAuth','tienePermisosPanel','puedeEliminarUsuarios']
   }
 
 
