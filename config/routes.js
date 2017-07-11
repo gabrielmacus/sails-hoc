@@ -53,8 +53,10 @@ module.exports.routes = {
   'get /admin':"PanelController.index",
   'POST /admin/ingresar':"UsuarioController.ingresarPanel",
 
-  'get /views/:view':"PanelController.loadView"
+  'get /views/:view':"PanelController.loadView",
 
+  'POST /subida/temporal':"ArchivoController.subirTmp",
+  'POST /subida':"ArchivoController.subir"
 
 
   /***************************************************************************

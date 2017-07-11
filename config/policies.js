@@ -82,6 +82,20 @@ module.exports.policies = {
     find:['sessionAuth','tienePermisosPanel'],
     update:['sessionAuth','tienePermisosPanel','puedeCrearUsuarios'],
     delete:['sessionAuth','tienePermisosPanel','puedeEliminarUsuarios']
+  },
+  ArchivoController:
+  {
+    create: ['sessionAuth'],
+    update:['sessionAuth'],
+    delete:['sessionAuth'],
+    subir:['sessionAuth'],
+    subirTmp:['sessionAuth']
+  },
+  RepositorioController:
+  {
+    create: ['sessionAuth','tienePermisosPanel'],
+    update:['sessionAuth','tienePermisosPanel'],
+    delete:['sessionAuth','tienePermisosPanel']
   }
 
 

@@ -8,7 +8,7 @@ module.exports = {
     nombre:{type:"string",size:100,required:true},
     descripcion:{type:"text",size:800},
     peso:{type:'integer'},
-    nombreArchivo:{type:'string'},
+    ruta:{type:'string'},
     repositorio:{model:"Repositorio",required:true}
   }
 

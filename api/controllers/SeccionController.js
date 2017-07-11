@@ -28,7 +28,18 @@ module.exports = {
 
 
   },
-  
+  create:function (req,res) {
+    var seccion = req.allParams();
+    seccion.usuario=req.session.userId;
+    Seccion.create(seccion,function (err, results) {
+      if (err) {
+        return res.negotiate(err);
+
+      }
+      res.json(results);
+    });
+  }
+
 
 };
 

@@ -20,6 +20,7 @@ module.exports = {
        carpetaDeGuardado:{type:'string',required:true}
        */
     },
+     usuario:{model:'usuario'},
     filesystem:
     {
       type:'json'

@@ -179,5 +179,29 @@ module.exports=
 
 
     });
+  },
+  create:function (req,res) {
+
+    var usuario=req.allParams();
+
+    if(typeof usuario.avatar == "string")
+    {
+      
+    }
+
+    Usuario.create(usuario,function(err,results){
+
+      if(err)
+      {
+        return res.negotiate(err);
+
+      }
+
+      res.json(results);
+
+
+    });
+
   }
+
 }
