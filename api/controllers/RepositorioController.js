@@ -10,19 +10,32 @@ module.exports=
 
     repositorio.usuario = req.session.userId;
 
-    Repositorio.create(repositorio,function (err,results) {
+    function callback (err,results)
+    {
 
-      if(err)
-      {
-        return res.negotiate(err);
+        if(err)
+        {
+          return res.negotiate(err);
 
-        //   throw err;
-      }
+          //   throw err;
+        }
+
+      console.log(results);
+
+        res.json(results);
 
 
-      res.json(results);
+    }
 
-    });
+    if(req.param("id"))
+    {
+      Repositorio.update({id:req.param("id")},repositorio,callback);
+    }
+    else
+    {
+      Repositorio.create(repositorio,callback);
+    }
+
 
   }
 }

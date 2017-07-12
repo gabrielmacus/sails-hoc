@@ -3,7 +3,7 @@
  */
 const path=require('path');
 const dateFormat = require('dateformat');
-const fs = require('fs-extra')
+const fs = require('fs-extra');
 module.exports=
 {
 
@@ -126,7 +126,6 @@ module.exports=
 
 },
 
-
   subir:function (req, res) {
 
     Repositorio.find({id:req.param("repositorio")}, function (err,result) {
@@ -179,9 +178,6 @@ module.exports=
           file.tmpName =  file.tmpName[file.tmpName.length-1];
 
           var oldDir= sails.config.appPath+"/.tmp/public/media/"+file.tmpName;
-          console.log(oldDir+" "+newDir);
-
-
 
           fs.copy( oldDir, newDir)
             .then(function () {
@@ -189,11 +185,9 @@ module.exports=
 
               archivos.push(archivo);
 
-
-              console.log(i);
               if(i==files.length)
               {
-                console.log("Llega acá??");
+
                 if(archivos.length>0)
                 {
                   Archivo.create(archivos).exec(function (err, records) {
@@ -243,5 +237,12 @@ module.exports=
 
     });
 
+  },
+
+  findArchivos: function (req, res) {
+
+    return sails.hooks.blueprints.middleware.find(req,res, function () {
+      console.log("next!");
+    });
   }
 }
