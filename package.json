@@ -32,6 +32,7 @@
     "sails": "~0.12.13",
     "sails-disk": "~0.10.9",
     "sails-mongo": "^0.12.2",
+    "sails-pager": "^2.1.0",
     "semantic-ui": "^2.2.10",
     "youtube-dl": "^1.11.1"
   },

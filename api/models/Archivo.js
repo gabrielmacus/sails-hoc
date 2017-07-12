@@ -8,8 +8,9 @@ module.exports = {
     nombre:{type:"string",size:100,required:true},
     descripcion:{type:"text",size:800},
     peso:{type:'integer'},
-    ruta:{type:'string'},
-    repositorio:{model:"Repositorio",required:true}
+    versiones:{type:'json'},
+    repositorio:{model:"Repositorio",required:true},
+
   }
 
 };

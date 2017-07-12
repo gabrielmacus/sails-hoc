@@ -89,7 +89,8 @@ module.exports.policies = {
     update:['sessionAuth'],
     delete:['sessionAuth'],
     subir:['sessionAuth'],
-    subirTmp:['sessionAuth']
+    subirTmp:['sessionAuth'],
+    guardar:['sessionAuth']
   },
   RepositorioController:
   {
