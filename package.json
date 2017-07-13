@@ -8,6 +8,8 @@
     "async": "^2.5.0",
     "cheerio": "^1.0.0-rc.2",
     "dateformat": "^2.0.0",
+    "del": "^3.0.0",
+    "easyimage": "^2.1.0",
     "ejs": "2.3.4",
     "email-templates": "^2.6.0",
     "fs-extra": "^3.0.1",

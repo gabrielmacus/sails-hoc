@@ -2,7 +2,6 @@
  * Created by Puers on 02/07/2017.
  */
 const path=require('path');
-const dateFormat = require('dateformat');
 const fs = require('fs-extra');
 const async = require("async");
 const pager = require('sails-pager');
@@ -44,89 +43,88 @@ module.exports=
       res.json(result);
     });
   },
+  _guardar:function (req, res) {
+  var files=  req.param('archivos');
 
-  guardar:function (req, res) {
+  if(files && files.length>0)
+  {
 
-    Repositorio.find({id:req.param("repositorio")}, function (err,result) {
 
-      if(err)
+    var now=new Date();
+
+    var fechadir=dateFormat(now, "yyyy/mm/dd");
+
+    //Si subo al sistema de archivos
+
+    var carpeta=`assets/${repositorio.carpetaDeGuardado}/${fechadir}`;
+    var dirname= path.resolve(sails.config.appPath,carpeta);
+
+    var i=0;
+
+    var file={};
+
+    function saveArchivo() {
+      archivo.usuario = req.session.userId;
+      if(archivo.id)
       {
-        return res.negotiate(err);
 
-        //   throw err;
-      }
-
-      if(result.length==0)
-      {
-        return res.badRequest(res.i18n("subidaArchivos.noExisteRepositorio"));
-
-      }
-
-      var repositorio =result[0];
-
-      var now=new Date();
-
-      var fechadir=dateFormat(now, "yyyy/mm/dd");
-
-
-      if(repositorio.ftp){
+        Archivo.update({id:archivo.id},archivo).exec(modelCallback);
 
       }
       else
       {
-        //Si subo al sistema de archivos
 
-        var carpeta=`assets/${repositorio.carpetaDeGuardado}/${fechadir}`;
-        var dirname= path.resolve(sails.config.appPath,carpeta);
-        var files=  req.param('archivos');
+        Archivo.create(archivo).exec(modelCallback);
+      }
 
-        var i=0;
+    }
+    function deleteArchivo() {
 
-        function saveArchivo() {
+      Archivo.destroy({id:file.id}).exec(modelCallback);
 
-          if(archivo.id)
-          {
-            Archivo.update({id:archivo.id},archivo).exec(modelCallback);
+    }
 
-          }
-          else
-          {
-            Archivo.create(archivo).exec(modelCallback);
-          }
+    var modelCallback=function (err, records)
+    {
+
+      if(err)
+      {
+        return res.badRequest(res.i18n("subidaArchivos.archivosNoGuardados"));
+
+        //   throw err;
+      }
+
+      if(i==files.length)
+      {
+        return  res.json(records);
+
+      }
+      else
+      {
+        loopFiles();
+      }
+
+
+    }
+
+    var repositorio;
+    var loopFiles =function () {
+      file=files[i];
+      repositorio = file.repositorio.id;
+      i++;
+
+
+      if(file.url || file.delete)
+      {
+
+        if(repositorio.ftp)
+        {
 
         }
-
-          function modelCallback (err, records)
-          {
-
-          if(err)
-          {
-            return res.badRequest(res.i18n("subidaArchivos.archivosNoGuardados"));
-
-            //   throw err;
-          }
-
-          if(i==files.length)
-          {
-            return  res.json(records);
-
-          }
-          else
-          {
-            loopFiles();
-          }
-
-
-        }
-
-        function loopFiles() {
-          var file=files[i];
-          i++;
-
-
-          if(file.url)
-          {
-            var nombreArchivo=file.filename;
+        else
+        {
+          if(!file.delete)
+          {  var nombreArchivo=file.filename;
 
             var ruta=`${fechadir}/${nombreArchivo}`;
 
@@ -138,182 +136,204 @@ module.exports=
 
             var oldDir= sails.config.appPath+"/.tmp/public/media/"+file.tmpName;
 
-            var versiones={};
 
-            versiones["original"]=ruta;
+          }
+
+          /** Elimino las versiones viejas si las hay**/
+
+          if(file.versiones)
+          {
+            var oldVersions =[];
+
+            for(var k in file.versiones)
+            {
+              oldVersions.push( path.join(process.cwd()+"/assets",repositorio.carpetaDeGuardado+file.versiones[k].url));
+
+            }
+
+            del(oldVersions).then(paths => {
 
 
 
-            fs.copy( oldDir, newDir)
-              .then(function () {
-                archivo={versiones:versiones,repositorio:req.param("repositorio"),nombre:file.nombre,descripcion:file.descripcion,peso:file.size};
+              if(paths.length==0)
+              {
+                return res.serverError(res.i18n("subidaArchivos.errorEliminando"));
+              }
 
-                saveArchivo();
+              if(!file.delete)
+              {
+                createVersions();
+              }
+              else
+              {
+                deleteArchivo();
+              }
 
-              })
-              .catch(function (err) {
-                return res.serverError(res.__("subidaArchivos.archivoError"));
-              });
+            });
+
+
 
           }
           else
           {
-            archivo={id:file.id,repositorio:req.param("repositorio"),nombre:file.nombre,descripcion:file.descripcion,peso:file.size};
-            saveArchivo();
-
+            createVersions();
           }
 
 
-        }
+          /*** ***/
 
+          function createVersions() {
+            /** Creo las versiones nuevas **/
+            var versiones={};
+            versiones["original"]={};
+            versiones["original"]["url"]=ruta;
 
+            /** **/
 
-
-
-        loopFiles();
-
-
-        //res.json(result);
-      }
-
-
-
-
-    });
-
-  },
-
-  _guardar:function (req, res) {
-
-    Repositorio.find({id:req.param("repositorio")}, function (err,result) {
-
-      if(err)
-      {
-        return res.negotiate(err);
-
-        //   throw err;
-      }
-
-      if(result.length==0)
-      {
-        return res.badRequest(res.i18n("subidaArchivos.noExisteRepositorio"));
-
-      }
-
-      var repositorio =result[0];
-
-      var now=new Date();
-
-      var fechadir=dateFormat(now, "yyyy/mm/dd");
-
-
-      if(repositorio.ftp){
-
-      }
-      else
-      {
-        //Si subo al sistema de archivos
-
-        var carpeta=`assets/${repositorio.carpetaDeGuardado}/${fechadir}`;
-        var dirname= path.resolve(sails.config.appPath,carpeta);
-        var files=  req.param('archivos');
-
-
-        var archivos=[];
-
-        async.waterfall([
-          function(callback) {
-            for (var i=0;i<files.length;i++)
-            {
-
-              var file=files[i];
-
-              var nombreArchivo=file.filename;
-
-              var ruta=`${fechadir}/${nombreArchivo}`;
-
-              var newDir=path.resolve(dirname,nombreArchivo);
-              file.tmpName= file.url;
-
-              file.tmpName = file.tmpName.split("/");
-              file.tmpName =  file.tmpName[file.tmpName.length-1];
-
-              var oldDir= sails.config.appPath+"/.tmp/public/media/"+file.tmpName;
-
-              var versiones={};
-
-              versiones["original"]=ruta;
-
-
+            var copyOriginal=function () {
 
               fs.copy( oldDir, newDir)
                 .then(function () {
-                  var archivo={versiones:versiones,repositorio:req.param("repositorio"),nombre:file.nombre,descripcion:file.descripcion,peso:file.size};
-                  console.log(archivos);
-                  archivos.push(archivo);
+                  archivo={versiones:versiones,repositorio:req.param("repositorio"),nombre:file.nombre,descripcion:file.descripcion,peso:file.size};
 
-                  if(i==files.length)
+
+
+
+                  if(file.id)
                   {
-
-                    if(archivos.length>0)
-                    {
-                      Archivo.create(archivos).exec(function (err, records) {
-
-                        if(err)
-                        {
-                          return res.negotiate(err);
-
-                          //   throw err;
-                        }
-
-                        res.json(records);
-
-
-
-                      });
-
-                    }
-                    else
-                    {
-                      return res.badRequest(res.i18n("subidaArchivos.archivosNoGuardados"));
-                    }
-
+                    archivo.id=file.id;
                   }
-
+                  saveArchivo();
 
                 })
                 .catch(function (err) {
                   return res.serverError(res.__("subidaArchivos.archivoError"));
-                })
+                });
+            }
+
+            var cut=0;
+            var makeCut=function ()
+            {
 
 
+              if(cut==repositorio.versionesImagenes.length)
+              {
+                //Luego de hacer los cortes, copio la original
+                copyOriginal();
+              }
+              else
+              {  var version =repositorio.versionesImagenes[cut];
+
+
+
+                var versionPath=`${fechadir}/${version.nombre}_${nombreArchivo}`;
+                var cutPath=path.join(process.cwd()+"/assets/"+repositorio.carpetaDeGuardado,versionPath);
+
+                easyimg.rescrop({
+                  src:oldDir, dst:cutPath,
+                  width:version.width, height:version.height
+                }).then(
+                  function(image) {
+                    versiones[version.nombre]={};
+                    versiones[version.nombre]["url"]=versionPath;
+                    makeCut();
+
+                  },
+                  function (err) {
+
+                    return  res.serverError("subidaArchivos.errorAlCortarImagen");
+                  }
+                );
+
+
+
+              }
+
+              cut++;
+
+
+
+
+
+
+            }
+
+            var ext= path.extname(file.filename);
+            if(repositorio.versionesImagenes  && ArchivoService.verTipo(ext)== 'image') {
+              //Cortes de imagenes
+              makeCut();
+
+
+            }
+            else
+            {
+              copyOriginal();
             }
 
 
 
 
-          },
-          function(arg1, arg2, callback) {
 
           }
-        ], function (err, result) {
-          // result now equals 'done'
-        });
+
+        }
 
 
+      }
+      else
+      {
+        archivo={id:file.id,repositorio:req.param("repositorio"),nombre:file.nombre,descripcion:file.descripcion,peso:file.size};
+        saveArchivo();
 
 
-
-        //res.json(result);
       }
 
 
+    }
 
 
-    });
+
+
+
+    loopFiles();
+
+
+    //res.json(result);
+
+
+
+  }
+  else
+  {
+    res.badRequest(res.i18n("subidaArchivos.errorAlCortarImagen"));
+  }
+
+},
+  guardar:function (req, res) {
+
+    var files = req.param("archivos");
+    if(files && files.length>0)
+    {
+
+      ArchivoService.guardarArchivos(files,req,function (data) {
+
+        if(data.error)
+        {
+          return    res.json(data.code,{error:res.i18n(data.error)});
+        }
+        else
+        {
+         return  res.json(data);
+        }
+      });
+    }
+    else
+    {
+      res.badRequest(res.i18n("subidaArchivos.ningunArchivoSeleccionado"));
+
+    }
 
   },
-
   find:function (req,res) {
 
     var perPage = 24;

@@ -12,6 +12,12 @@
   "subidaArchivos.archivosNoGuardados":"Ningún archivo fue guardado",
   "subidaArchivos.archivoError":"Error al subir un archivo",
   "subidaArchivos.noExisteRepositorio":"No existe el repositorio seleccionado",
+  "subidaArchivos.errorEliminando":"Error al eliminar el archivo",
+  "subidaArchivos.errorAlCortarImagen":"Error al cortar una imágen",
+  "subidaArchivos.ningunArchivoSeleccionado":"No se seleccionó ningun archivo",
+  "subidaArchivis.errorGuardando":"Error al guardar un archivo",
+
+
 
   "usuario.yaRegistrado":"El usuario ya esta registrado",
   "usuario.noAutenticado":"Debe ingresar a su cuenta para realizar dicha acción",

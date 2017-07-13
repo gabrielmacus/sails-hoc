@@ -10,6 +10,7 @@ module.exports = {
     peso:{type:'integer'},
     versiones:{type:'json'},
     repositorio:{model:"Repositorio",required:true},
+  usuario:{model:'usuario'}
 
   }
 

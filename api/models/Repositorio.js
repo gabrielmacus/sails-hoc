@@ -18,12 +18,17 @@ module.exports = {
        puerto:{type:'integer',required:true,defaultsTo:21},
        usuario:{type:'string',required:true},
        contrasena:{type:'string',required:true},
-     
+
        carpetaDeGuardado:{type:'string',required:true}
        */
     },
      usuario:{model:'usuario'},
-  
+     versionesImages:
+     {
+       type:"json"
+     }
+
+
   }
 
 };
