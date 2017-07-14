@@ -4,8 +4,7 @@
 const path=require('path');
 const fs = require('fs-extra');
 const pager = require('sails-pager');
-
-
+const asyncLoop = require('node-async-loop');
 const del = require('del');
 const easyimg = require('easyimage');
 const dateFormat = require('dateformat');
@@ -47,7 +46,7 @@ module.exports=
       res.json(result);
     });
   },
-  guardar:function (req, res) {
+  _guardar:function (req, res) {
   var files=  req.param('archivos');
 
   if(files && files.length>0)
@@ -338,6 +337,38 @@ module.exports=
   }
 
 },
+  guardar:function (req,res) {
+
+    var files = req.param("archivos");
+    var savedFiles=[];
+    asyncLoop(files,function (file,next) {
+
+      ArchivoService.guardar(file,req.session.userId,req.param("repositorio"),
+        function (result) {
+
+          if(result.error)
+          {
+            return res.json(result.code,res.i18n(result.error));
+          }
+
+          savedFiles.push(result);
+          next();
+
+
+        });
+
+
+
+
+    },function () {
+
+      return res.json(savedFiles);
+
+    });
+
+
+
+  },
   find:function (req,res) {
 
     var perPage = 24;

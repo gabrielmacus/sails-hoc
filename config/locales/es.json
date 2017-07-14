@@ -28,6 +28,8 @@
   "usuario.sesionInvalida":"La sesión es inválida. Ingrese de nuevo",
   "usuario.noPuedeCrear":"No tiene los permisos para crear o actualizar usuarios",
   "usuario.nivelEliminarUsuarios":"No tiene los permisos para eliminar usuarios",
+  "usuario.errorAvatar":"Error al guardar el avatar",
+  "usuario.errorCreacion":"Error al crear el usuario",
 
   "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde",
 

@@ -184,23 +184,39 @@ module.exports=
 
     var usuario=req.allParams();
 
-    if(typeof usuario.avatar == "string")
-    {
-      
-    }
+    ArchivoService.guardar(usuario.avatar,req.session.userId,req.param("repositorio"),
+      function (result) {
+console.log(result);
+        if(result.error)
+        {
+          //return res.json(result.code,res.i18n(res.error));
+          return res.json(500,res.i18n("usuario.errorAvatar"));
+        }
 
-    Usuario.create(usuario,function(err,results){
+        usuario.avatar=result.id;
 
-      if(err)
-      {
-        return res.negotiate(err);
+         delete usuario.repositorio;
+        
+        Usuario.create(usuario,function(err,results){
 
-      }
+          if(err)
+          {
+            return res.serverError(res.i18n("usuario.errorCreacion"));
 
-      res.json(results);
+          }
+
+          res.json(results);
 
 
-    });
+        });
+
+
+      });
+
+
+
+
+
 
   }
 

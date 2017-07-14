@@ -28,6 +28,7 @@
     "include-all": "^1.0.0",
     "jsonwebtoken": "^7.4.1",
     "mkdir-recursive": "^0.3.0",
+    "node-async-loop": "^1.2.2",
     "nodemailer": "^4.0.1",
     "rc": "1.0.1",
     "request": "^2.81.0",
