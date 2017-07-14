@@ -19,7 +19,6 @@ module.exports = {
        usuario:{type:'string',required:true},
        contrasena:{type:'string',required:true},
 
-       carpetaDeGuardado:{type:'string',required:true}
        */
     },
      usuario:{model:'usuario'},
@@ -27,6 +26,13 @@ module.exports = {
      {
        type:"json"
      }
+    /*
+    *     "versionesImagenes":
+     [
+     {
+     "nombre":"panel",
+     "width":250,
+     "height":250}]*/
 
 
   }

@@ -17,6 +17,8 @@
   "subidaArchivos.ningunArchivoSeleccionado":"No se seleccionó ningun archivo",
   "subidaArchivis.errorGuardando":"Error al guardar un archivo",
 
+  "repositorio.errorAlSeleccionar":"Error al seleccionar el repositorio" ,
+
 
 
   "usuario.yaRegistrado":"El usuario ya esta registrado",

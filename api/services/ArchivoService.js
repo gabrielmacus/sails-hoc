@@ -8,6 +8,7 @@ const fs = require('fs-extra');
 const path=require('path');
 const easyimg = require('easyimage');
 const dateFormat = require('dateformat');
+const async = require("async");
 module.exports=
 {
 
@@ -18,7 +19,7 @@ module.exports=
       if (err) {
 
 
-        callback({error:"subidaArchivis.errorGuardando",code:500});
+        callback({error:"subidaArchivos.errorGuardando",code:500});
 
       }
 
@@ -37,85 +38,33 @@ module.exports=
 
     });
   },
-  guardarArchivos:function (files,req,callback) {
+  guardar:function(files,repositorio,callback){
 
 
-      var now=new Date();
+    var i=0;
 
-      var fechadir=dateFormat(now, "yyyy/mm/dd");
+    ArchivoService.loop(files,i,repositorio, callback);
 
-      //Si subo al sistema de archivos
+  },
+  loop: function (files,i,repositorio,callback) {
 
+    var file=files[i];
+    var now=new Date();
+    var fechadir=dateFormat(now, "yyyy/mm/dd");
+    var carpeta=`assets/${repositorio.carpetaDeGuardado}/${fechadir}`;
+    var dirname= path.resolve(sails.config.appPath,carpeta);
 
-      var i=0;
+    var repId= file.repositorio.id || repositorio;
 
-      var file={};
-
-      function saveArchivo() {
-        archivo.usuario = req.session.userId;
-        if(archivo.id)
-        {
-
-          Archivo.update({id:archivo.id},archivo).exec(modelCallback);
-
-        }
-        else
-        {
-
-          Archivo.create(archivo).exec(modelCallback);
-        }
-
-      }
-      function deleteArchivo() {
-
-        Archivo.destroy({id:file.id}).exec(modelCallback);
-
-      }
-
-      var modelCallback=function (err, records)
-      {
+    Repositorio.find({id:repId},
+      function (err, results) {
 
         if(err)
         {
-
-
-          callback({error:"subidaArchivos.archivosNoGuardados",code:400});
-
-
-          //   throw err;
+          callback({error:"repositorio.errorAlSeleccionar",code:500});
         }
 
-        if(i==files.length)
-        {
-
-          callback(records);
-
-
-        }
-        else
-        {
-          loopFiles();
-        }
-
-
-      }
-
-      var repositorio;
-      var loopFiles =function () {
-        file=files[i];
-        if(file.repositorio)
-        {
-          repositorio = file.repositorio.id;
-        }
-        else
-        {
-          repositorio = req.param("repositorio");
-        }
-
-        i++;
-
-         carpeta=`assets/${repositorio.carpetaDeGuardado}/${fechadir}`;
-         dirname= path.resolve(sails.config.appPath,carpeta);
+        repositorio =results[0];
 
         if(file.url || file.delete)
         {
@@ -160,8 +109,7 @@ module.exports=
 
                 if(paths.length==0)
                 {
-                  callback({error:"subidaArchivos.errorEliminando",code:500});
-
+                  return res.serverError(res.i18n("subidaArchivos.errorEliminando"));
                 }
 
                 if(!file.delete)
@@ -211,9 +159,7 @@ module.exports=
 
                   })
                   .catch(function (err) {
-
-                    callback({error:"subidaArchivos.archivoError",code:500});
-
+                    return res.serverError(res.__("subidaArchivos.archivoError"));
                   });
               }
 
@@ -246,8 +192,8 @@ module.exports=
 
                     },
                     function (err) {
-                      callback({error:"subidaArchivos.errorAlCortarImagen",code:500});
 
+                      return  res.serverError("subidaArchivos.errorAlCortarImagen");
                     }
                   );
 
@@ -294,17 +240,7 @@ module.exports=
 
         }
 
-
-      }
-
-
-
-
-
-      loopFiles();
-
-
-
+      });
 
 
   },
