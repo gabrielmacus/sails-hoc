@@ -172,7 +172,7 @@ module.exports=
   {
 
 
-    var perPage = 24;
+    var perPage = 50;
     var currentPage =(req.param("p"))?req.param("p"):1;
     try
     {
@@ -182,6 +182,8 @@ module.exports=
     {
       var conditions ={};
     }
+
+
     conditions.id={'!':req.session.userId};
 
 
