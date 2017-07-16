@@ -29,6 +29,17 @@ module.exports = {
     callback();
 
   },
+  beforeUpdate:function (values,callback) {
+
+    var hash=crypto.createHash(sails.config.hashAlgo);
+    hash.update(values.contrasena);
+    values.contrasena=hash.digest('hex');
+
+    //calling cb() with an argument returns an error. Useful for canceling the entire operation if some criteria fails.
+    callback();
+
+  }
+  ,
   afterCreate:function(values,callback)
   {
     var hash=crypto.createHash(sails.config.hashAlgo);

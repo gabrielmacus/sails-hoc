@@ -56,8 +56,10 @@ module.exports.routes = {
   'get /views/:view':"PanelController.loadView",
 
   'POST /subida/temporal':"ArchivoController.subirTmp",
-  'POST /guardar/archivo':"ArchivoController.guardar"
+  'POST /guardar/archivo':"ArchivoController.guardar",
 
+  'POST /usuario/:id':'UsuarioController.guardar',
+  'POST /usuario':'UsuarioController.guardar'
 
   /***************************************************************************
   *                                                                          *

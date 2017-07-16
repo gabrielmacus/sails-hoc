@@ -5,6 +5,7 @@
 const crypto = require('crypto');
 const async = require("async");
 
+const pager = require('sails-pager');
 module.exports=
 {
   registrar:function(req,res)
@@ -167,51 +168,157 @@ module.exports=
   },
   find:function(req,res)
   {
-    Usuario.find({id:{ '!' :req.session.userId}},function(err,results){
+
+
+    var perPage = 24;
+    var currentPage =(req.param("p"))?req.param("p"):1;
+    try
+    {
+      var conditions =(req.param("where"))?JSON.parse(req.param("where")):{};
+    }
+    catch (e)
+    {
+      var conditions ={};
+    }
+    conditions.id={'!':req.session.userId};
+
+
+    var elementosAsociados=[{name: 'avatar', query: {}}];
+
+    //Cargo los repositorios
+    Repositorio.find({}, function (err, repositorios) {
+
+
 
       if(err)
       {
         return res.negotiate(err);
-
       }
 
-      res.json(results);
+      //Using Promises
+      pager.paginate(Usuario, conditions, currentPage, perPage, elementosAsociados).then(function(records){
 
+
+        records.data.map(
+          function(element){
+
+            console.log(element);
+            if(element.avatar)
+            {
+              var repositorio= repositorios.filter(
+                function(el){
+
+                  return el.id== element.avatar.repositorio;
+                }
+              )[0];
+
+
+              element.avatar.repositorio = repositorio;
+            }
+
+            delete element.contrasena;
+            return element;
+          }
+        );
+
+
+
+
+        res.json(records);
+
+
+      }).catch(function(err) {
+
+        res.negotiate(err);
+
+      });
 
     });
+
+
   },
-  create:function (req,res) {
+  guardar:function (req,res) {
 
     var usuario=req.allParams();
 
-    ArchivoService.guardar(usuario.avatar,req.session.userId,req.param("repositorio"),
-      function (result) {
-console.log(result);
+    async.waterfall([
+      function(callback) {
+
+        if(!usuario.avatar.id)
+        {
+          ArchivoService.guardar(usuario.avatar,req.session.userId,req.param("repositorio"),
+            function (result) {
+
+              callback(null,result);
+
+            });
+        }
+        else
+        {
+          callback(null,false);
+        }
+
+      },
+      function(result,callback) {
+
+        if(result)
+        {
         if(result.error)
         {
           //return res.json(result.code,res.i18n(res.error));
           return res.json(500,res.i18n("usuario.errorAvatar"));
         }
 
-        usuario.avatar=result.id;
+          usuario.avatar=result.id;
 
-         delete usuario.repositorio;
-        
-        Usuario.create(usuario,function(err,results){
+        }
 
-          if(err)
+        delete usuario.repositorio;
+
+        if(req.param("id"))
+        {
+
+          if(usuario.avatar && usuario.avatar.id)
           {
-            return res.serverError(res.i18n("usuario.errorCreacion"));
-
+            usuario.avatar= usuario.avatar.id;
           }
 
-          res.json(results);
+          Usuario.update({id:req.param("id")},usuario,function(err,results){
+
+            console.log(err);
+            if(err)
+            {
+              return res.serverError(res.i18n("usuario.errorActualizacion"));
+
+            }
+
+            res.json(results);
 
 
-        });
+          });
+        }
+        else
+        {
+          Usuario.create(usuario,function(err,results){
+
+            if(err)
+            {
+              return res.serverError(res.i18n("usuario.errorCreacion"));
+
+            }
+
+            res.json(results);
 
 
-      });
+          });
+        }
+
+
+
+      }
+    ], function (err, result) {
+      // result now equals 'done'
+    });
 
 
 

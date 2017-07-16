@@ -30,6 +30,7 @@
   "usuario.nivelEliminarUsuarios":"No tiene los permisos para eliminar usuarios",
   "usuario.errorAvatar":"Error al guardar el avatar",
   "usuario.errorCreacion":"Error al crear el usuario",
+  "usuario.errorActualizacion":"Error al actualizar el usuario",
 
   "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde",
 

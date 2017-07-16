@@ -53,6 +53,7 @@ module.exports=
     {
       file.nombre =file.filename;
     }
+
     var repositorioQuery= {id:repositorioId};
 
     async.waterfall([
@@ -234,10 +235,10 @@ module.exports=
           else
           {
 
-            
+
             Archivo.create(archivo).exec(  function (err,results) {
 
-          
+
 
               callback(null,err,results);
             });
