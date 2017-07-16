@@ -70,8 +70,12 @@ module.exports.connections = {
      adapter: 'sails-mongo',
        host: 'localhost',
      port: 27017,
-     database: 'adhoc' //optional
-   },
+     database: 'adhoc', //optional
+
+  wlNext: {
+    caseSensitive: true
+  }
+   }
 
 
   /***************************************************************************

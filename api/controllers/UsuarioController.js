@@ -97,6 +97,8 @@ module.exports=
           var hash=crypto.createHash(sails.config.hashAlgo);
           hash.update(req.param("contrasena"));
           var contrasena=hash.digest('hex');
+
+
           Usuario.find({or:[{email:req.param("nombreUsuario")},{nombreUsuario:req.param("nombreUsuario")}],contrasena:contrasena},function(err,results){
 
 
