@@ -42,8 +42,10 @@ module.exports.routes = {
   'POST /ingresar':'UsuarioController.ingresar',
   'get /usuario':"UsuarioController.find",
   'get /perfil':'PerfilController.index',
-  'get /nuevo/clasificado':'ClasificadoController.save',
-  'POST /guardar/clasificado':'ClasificadoController.save',
+
+  //'get /nuevo/clasificado':'ClasificadoController.save',
+  'POST /guardar/clasificado':'ClasificadoController.guardar',
+
   'get /':'HomeController.index',
 
   'get /secciones/arbol':'SeccionController.getArbol',

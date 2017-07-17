@@ -4,7 +4,6 @@
 
 const crypto = require('crypto');
 const async = require("async");
-
 const pager = require('sails-pager');
 module.exports=
 {

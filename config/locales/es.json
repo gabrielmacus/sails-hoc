@@ -20,6 +20,13 @@
   "repositorio.errorAlSeleccionar":"Error al seleccionar el repositorio" ,
 
 
+  "post.errorMostrando":"Error al mostrar los resultados",
+  "post.errorAsociados":"Error al mostrar elementos asociados",
+  "post.errorCreando":"Error al crear el post",
+
+  "clasificado.errorActualizacion":"Error al actualizar el clasificado",
+  "clasificado.errorCreacion":"Error al crear el clasificado",
+
 
   "usuario.yaRegistrado":"El usuario ya esta registrado",
   "usuario.noAutenticado":"Debe ingresar a su cuenta para realizar dicha acción",
