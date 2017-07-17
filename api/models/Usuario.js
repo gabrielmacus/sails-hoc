@@ -20,20 +20,24 @@ module.exports = {
     avatar:{model:"Archivo"}
   },
   beforeCreate:function (values,callback) {
+    if(values.contrasena) {
+      var hash = crypto.createHash(sails.config.hashAlgo);
 
-    var hash=crypto.createHash(sails.config.hashAlgo);
-    hash.update(values.contrasena);
-    values.contrasena=hash.digest('hex');
-
+      var hash = crypto.createHash(sails.config.hashAlgo);
+      hash.update(values.contrasena);
+      values.contrasena = hash.digest('hex');
+    }
     //calling cb() with an argument returns an error. Useful for canceling the entire operation if some criteria fails.
     callback();
 
   },
   beforeUpdate:function (values,callback) {
 
-    var hash=crypto.createHash(sails.config.hashAlgo);
-    hash.update(values.contrasena);
-    values.contrasena=hash.digest('hex');
+    if(values.contrasena)
+    {    var hash=crypto.createHash(sails.config.hashAlgo);
+      hash.update(values.contrasena);
+      values.contrasena=hash.digest('hex');
+    }
 
     //calling cb() with an argument returns an error. Useful for canceling the entire operation if some criteria fails.
     callback();

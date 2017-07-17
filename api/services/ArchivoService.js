@@ -14,36 +14,57 @@ const asyncLoop = require('node-async-loop');
 module.exports=
 {
 
-  subirArchivo:function(path,files,callback)
+  subirArchivo:function(path,files,cb)
   {
-    fx.mkdir(path, function(err) {
 
-      if (err) {
+    async.waterfall(
+      [function (callback) {
+
+        fs.ensureDir(path, function (err, result){
+
+          if (err) {
 
 
-        callback({error:"subidaArchivos.errorGuardando",code:500});
 
-      }
+            cb({error:"subidaArchivos.errorGuardando",code:500});
+          }
 
-    files.upload({
-        // don't allow the total upload size to exceed ~10MB
+          callback();
+
+        });
+      },
+
+        function () {
+          files.upload({
+            // don't allow the total upload size to exceed ~10MB
 //    maxBytes: 10000000,
-        dirname:path
-      }, function whenDone(err, uploadedFiles) {
+            dirname:path
+          }, function whenDone(err, uploadedFiles) {
 
-        callback(err,uploadedFiles);
-
-
-      });
+            cb(err,uploadedFiles);
 
 
+          });
 
-    });
+        }]
+    );
+
+
+
+
   },
   guardar:function (file,usuarioId,repositorio,cb) {
 
 //Por ahora solo soporto subidas via sistema de archivos
     var now=new Date();
+
+    if(!file.delete && file.url)
+    {
+      //Solo si estoy creando el archivo
+      file.filename=now.getTime()+"_"+Math.random().toFixed(2)+path.extname(file.filename);
+
+    }
+
     repositorioId= (file.repositorio && file.repositorio.id) ||repositorio ;
     fechadir=dateFormat(now, "yyyy/mm/dd");
     nombreArchivo=file.filename;
@@ -161,6 +182,7 @@ module.exports=
 
             del(oldVersions).then(paths => {
 
+              console.log(paths);
               if(paths.length==0)
               {
                return cb({error:"subidaArchivos.errorEliminando",code:500});
