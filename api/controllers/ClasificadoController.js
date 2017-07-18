@@ -13,14 +13,15 @@ module.exports=
 
   guardar:function (req,res) {
 
+
     var clasificado=req.allParams();
 
-    console.log(clasificado);
     var uploadedArchivos=[];
 
 
     async.waterfall([
       function(callback) {
+
 
        if(clasificado.archivos)
        {
@@ -30,21 +31,25 @@ module.exports=
            ArchivoService.guardar(item,req.session.userId,req.param("repositorio"),
              function (result) {
 
+
                if(result.error)
                {
                res.json(result.code,res.i18n(result.error));
 
                }
+
                uploadedArchivos.push(result);
 
+               console.log("After finish loop");
 
                next();
-             },function () {
-
-               callback();
-
              });
 
+
+          },function () {
+
+           console.log("Finish loop");
+           callback();
 
          });
 
@@ -57,7 +62,8 @@ module.exports=
 
       },
       function(callback) {
-
+                        console.log("SADSDA");
+        console.log(uploadedArchivos);
         if(uploadedArchivos.length>0)
         {
           clasificado.archivos=[];
@@ -68,6 +74,7 @@ module.exports=
           }
 
         }
+        console.log(clasificado);
 
         delete clasificado.repositorio;
 
@@ -117,5 +124,83 @@ module.exports=
 
 
   }
+  ,
+  find:function(req,res)
+  {
 
+
+    var perPage = 50;
+    var currentPage =(req.param("p"))?req.param("p"):1;
+    try
+    {
+      var conditions =(req.param("where"))?JSON.parse(req.param("where")):{};
+    }
+    catch (e)
+    {
+      var conditions ={};
+    }
+
+    var elementosAsociados=[{name: 'archivos', query: {}}];
+
+    //Cargo los repositorios
+    Repositorio.find({}, function (err, repositorios) {
+
+
+
+      if(err)
+      {
+        return res.negotiate(err);
+      }
+
+      //Using Promises
+      pager.paginate(Clasificado, conditions, currentPage, perPage, elementosAsociados).then(function(records){
+
+
+        records.data.map(
+          function(element){
+
+            console.log(element);
+            if(element.avatar)
+            {
+              var repositorio= repositorios.filter(
+                function(el){
+
+                  return el.id== element.avatar.repositorio;
+                }
+              )[0];
+
+              if(element.archivos)
+              {
+                element.archivos.forEach(
+                  function (valor,clave) {
+
+
+
+                  }
+                );
+              }
+
+
+            }
+
+            return element;
+          }
+        );
+
+
+
+
+        res.json(records);
+
+
+      }).catch(function(err) {
+
+        res.negotiate(err);
+
+      });
+
+    });
+
+
+  }
 }

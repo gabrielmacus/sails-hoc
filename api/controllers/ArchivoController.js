@@ -368,7 +368,7 @@ module.exports=
 
 
 
-  }, 
+  },
   find:function (req,res) {
 
     var perPage = 24;
@@ -395,6 +395,6 @@ module.exports=
     });
 
 
-  },
+  }
 
 }

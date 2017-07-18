@@ -44,7 +44,8 @@ module.exports.routes = {
   'get /perfil':'PerfilController.index',
 
   //'get /nuevo/clasificado':'ClasificadoController.save',
-  'POST /guardar/clasificado':'ClasificadoController.guardar',
+  'POST /clasificado':'ClasificadoController.guardar',
+
 
   'get /':'HomeController.index',
 

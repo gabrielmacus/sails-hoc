@@ -135,7 +135,6 @@ module.exports=
 
                 },
                 function (err) {
-
                   return  cb({error:"subidaArchivos.errorAlCortarImagen",code:500})
                 }
               );
@@ -201,7 +200,8 @@ module.exports=
           callback();
         }
       },
-      function (callback) {
+      function (callback)
+      {
         if(file.url)
         {
           //Copio el archivo temporal a su destino
@@ -227,7 +227,8 @@ module.exports=
 
 
       },
-      function (callback) {
+      function (callback)
+      {
 
         //Guardo o creo los datos del archivo
         archivo={versiones:versiones,repositorio:repositorioId,nombre:file.nombre,descripcion:file.descripcion,peso:file.size};
