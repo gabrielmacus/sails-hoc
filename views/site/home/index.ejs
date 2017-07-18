@@ -1,41 +1,8 @@
-
-<div class="secciones">
-
+<%- partial('objetos/secciones.ejs') %>
 
 
-  <% if(secciones)
-  {   %>
+<div class="body">
+  <%- partial('objetos/ultimos-avisos.ejs') %>
 
 
-
-  <div class="grilla grilla-secciones">
-    <a class="seccion">
-
-
-
-    </a>
-    <% secciones.forEach(function (seccion,k) { %>
-
-    <a class="seccion">
-
-      <figure class="responsive image-container" >
-        <img class="cover responsive" src="<%- seccion.imagen %>">
-        <figcaption class="nombre"><p><%- seccion.nombre %></p></figcaption>
-      </figure>
-      <div class="mask animate"></div>
-
-    </a>
-
-
-    <% }); %>
-  </div>
-  <%
-  }
-  %>
-
-</div>
-
-
-<div class="login">
-  <%- partial('../login/index.ejs') %>
 </div>

@@ -221,18 +221,27 @@ module.exports=
   },
   loadSecciones:function (req,res) {
 
-    Secciones.find({pertenece:'595f9a0306394c041633462e'},function (err,results) {
+    var clasificadosSeccion='595f9a0306394c041633462e';
+    Seccion.find({},function (err,results) {
 
       if(err)
       {
         res.negotiate(err);
       }
 
+
       SeccionService.cargarArbolSecciones(results,function (arbol) {
+
+        var arbol = arbol.filter(
+          function (seccion) {
+            return seccion.id==clasificadosSeccion;
+          }
+        )[0].secciones;
+
         res.json(arbol);
       });
 
 
-    })
+    });
   }
 }
