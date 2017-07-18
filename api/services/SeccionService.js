@@ -31,7 +31,7 @@ function unflatten(arr) {
 module.exports =
 {
 
-  cargarArbolSecciones: function (results,callback) {
+  : function (results,callback) {
 
 
       var arbol=unflatten(results);

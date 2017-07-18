@@ -39,6 +39,18 @@ module.exports = {
   siteUrl:"http://localhost:1337",
   //idSeccionPrincipal:"595f9a0306394c041633462e",
   nivelUsuarioPanel:"5",
+  nivelUsuarioClasificados:
+  {
+    create:"5",
+    read:"5",
+    update:"5",
+    delete:"7"
+  },
   nivelSuperadmin:"10",
-  nivelCrearUsuario:"5"
+  nivelUsuarioUsuarios:{
+    create:"5",
+    read:"5",
+    update:"5",
+    delete:"7"
+  }
 };

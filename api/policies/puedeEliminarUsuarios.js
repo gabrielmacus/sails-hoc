@@ -15,7 +15,7 @@ module.exports = function(req, res, next) {
     return res.forbidden(req.__("usuario.noAutenticado"));
   }
 
-  if(req.session.nivel < sails.config.nivelEliminarUsuarios)
+  if(req.session.nivel < sails.config.nivelUsuarioUsuarios.delete)
   {
 
     // User is not allowed

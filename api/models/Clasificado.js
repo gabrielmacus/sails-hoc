@@ -12,7 +12,8 @@ module.exports = {
     },
    // moneda:{model:"Moneda"},
     monto:{type:"float",required:true},
-    archivos:{collection:'archivo'}
+    archivos:{collection:'archivo'},
+      estado:{type:"integer", enum: [1,2,3,4],defaultsTo:1}, //1:pendiente 2:borrador 3:publicado 4:rechazado
   }
 
 };

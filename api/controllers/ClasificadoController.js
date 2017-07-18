@@ -16,6 +16,13 @@ module.exports=
 
     var clasificado=req.allParams();
 
+    if(req.session.nivel>=sails.config.nivelUsuarioPanel)
+    {
+      //Se auto publica si tengo el nivel requerido
+      clasificado.estado = 3;
+    }
+
+    delete clasificado.repositorio;
     var uploadedArchivos=[];
 
 
@@ -40,7 +47,6 @@ module.exports=
 
                uploadedArchivos.push(result);
 
-               console.log("After finish loop");
 
                next();
              });
@@ -48,7 +54,6 @@ module.exports=
 
           },function () {
 
-           console.log("Finish loop");
            callback();
 
          });
@@ -74,7 +79,6 @@ module.exports=
           }
 
         }
-        console.log(clasificado);
 
         delete clasificado.repositorio;
 
@@ -156,25 +160,37 @@ module.exports=
       pager.paginate(Clasificado, conditions, currentPage, perPage, elementosAsociados).then(function(records){
 
 
+        //Armo las urls
         records.data.map(
           function(element){
 
-            console.log(element);
-            if(element.avatar)
+            if(element.archivos)
             {
-              var repositorio= repositorios.filter(
-                function(el){
-
-                  return el.id== element.avatar.repositorio;
-                }
-              )[0];
 
               if(element.archivos)
               {
+
+
                 element.archivos.forEach(
-                  function (valor,clave) {
+                  function (archivo,clave) {
 
 
+                    var repositorio= repositorios.filter(
+                      function(el){
+
+                        return el.id== archivo.repositorio;
+                      }
+                    )[0];
+
+
+                    for(k in archivo.versiones)
+                    {
+
+                      archivo.versiones[k].url=repositorio.direccionWeb+"/"+archivo.versiones[k].url;
+
+                    }
+
+                    element.archivos[clave] = archivo;
 
                   }
                 );
@@ -202,5 +218,21 @@ module.exports=
     });
 
 
+  },
+  loadSecciones:function (req,res) {
+
+    Secciones.find({pertenece:'595f9a0306394c041633462e'},function (err,results) {
+
+      if(err)
+      {
+        res.negotiate(err);
+      }
+
+      SeccionService.cargarArbolSecciones(results,function (arbol) {
+        res.json(arbol);
+      });
+
+
+    })
   }
 }

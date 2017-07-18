@@ -61,9 +61,10 @@ module.exports.policies = {
   ClasificadoController:
   {
     save:['sessionAuth'],
-    edit:['sessionAuth'],
+    update:['sessionAuth'],
     create: ['sessionAuth'],
-    delete:['sessionAuth']
+    destroy:['sessionAuth'],
+    guardar:['sessionAuth']
   },
   PanelController:
   {
@@ -73,7 +74,7 @@ module.exports.policies = {
   {
     create: ['sessionAuth','tienePermisosPanel'],
     update:['sessionAuth','tienePermisosPanel'],
-    delete:['sessionAuth','tienePermisosPanel']
+    destroy:['sessionAuth','tienePermisosPanel']
 
   },
   UsuarioController:
@@ -81,7 +82,7 @@ module.exports.policies = {
     create: ['sessionAuth','tienePermisosPanel','puedeCrearUsuarios'],
     find:['sessionAuth','tienePermisosPanel'],
     update:['sessionAuth','tienePermisosPanel','puedeCrearUsuarios'],
-    delete:['sessionAuth','tienePermisosPanel','puedeEliminarUsuarios']
+    destroy:['sessionAuth','tienePermisosPanel','puedeEliminarUsuarios']
   },
   ArchivoController:
   {
@@ -96,7 +97,7 @@ module.exports.policies = {
   {
     create: ['sessionAuth','tienePermisosPanel'],
     update:['sessionAuth','tienePermisosPanel'],
-    delete:['sessionAuth','tienePermisosPanel']
+    destroy:['sessionAuth','tienePermisosPanel']
   }
 
 
