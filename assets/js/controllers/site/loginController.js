@@ -2,7 +2,7 @@
 /**
  * Created by Gabriel on 07/07/2017.
  */
-app.controller('loginController', function($rootScope, $http) {
+app.controller('loginController', ['$rootScope','$http',function($rootScope, $http) {
 
   if(!$rootScope.usuarioLogin)
   {
@@ -20,4 +20,4 @@ app.controller('loginController', function($rootScope, $http) {
 
   }
 
-});
+}]);

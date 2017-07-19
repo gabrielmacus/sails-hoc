@@ -7,8 +7,9 @@ function error(data,status,header,config) {
   alert(data.data);
 
 }
-app.controller('ctrl', function($rootScope, $http) {
+app.controller('mainController',['$rootScope','$http', function($rootScope, $http)  {
 
+    $rootScope.search={};
   $rootScope.loginCheck=function () {
 
     $http.post('/ingresar', $rootScope.usuarioLogin)
@@ -26,4 +27,4 @@ app.controller('ctrl', function($rootScope, $http) {
 
   $rootScope.loginCheck();
 
-});
+}]);

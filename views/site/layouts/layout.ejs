@@ -30,18 +30,16 @@
     -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
     <!--STYLES-->
+    <link rel="stylesheet" href="/styles/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/styles/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/normalize.css">
-    <link rel="stylesheet" href="/styles/panel/sidebar.css">
     <link rel="stylesheet" href="/styles/reset.css">
     <!--STYLES END-->
+
   </head>
 
-  <body  style="   font-family: 'Roboto', sans-serif;" data-ng-app="app" data-ng-controller="ctrl" class="<%= bodyClasses.join(" ") %>">
-
-  <!-- Controllers -->
-  <script src="/js/controllers/site/mainController.js"></script>
-  <script src="/js/controllers/site/loginController.js"></script>
+  <body  style="   font-family: 'Roboto', sans-serif;" data-ng-app="app" data-ng-controller="mainController" class="<%= bodyClasses.join(" ") %>">
 
 
 
@@ -58,7 +56,8 @@
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/js/controllers/site/loginController.js"></script>
-    <script src="/js/controllers/site/mainController.js"></script>
+    <script src="/js/controllers/site/mainSearchController.js"></script>
+    <script src="/js/controllers/site/menuController.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

@@ -1,0 +1,135 @@
+.ultimos-avisos
+{
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ultimos-avisos .aviso .body
+{
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+.ultimos-avisos .aviso figure,.ultimos-avisos .aviso img
+{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+.ultimos-avisos .aviso h3
+{
+  font-size: 18px;
+  line-height: 25px;
+}
+.ultimos-avisos .aviso .nombre-usuario
+{
+  margin-bottom: 10px;
+  font-weight:300;
+  display: block;
+  font-size: 15px;
+}
+.ultimos-avisos .aviso footer
+{
+  padding: 15px;
+  background-color: #eaeaea;
+}
+.ultimos-avisos .aviso .mask{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0;
+  right:0;
+
+}
+.ultimos-avisos .aviso .categoria
+{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 8px;
+  color: white;
+  background-color: #26a69a;
+  font-size: 15px;
+}
+.ultimos-avisos .aviso
+{
+
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+@media screen and (min-width: 1024px)
+{
+  .ultimos-avisos .aviso
+  {
+    width: 23.5%;
+    margin-right: 2%;
+    margin-bottom:2%;
+  }
+  .ultimos-avisos .aviso:nth-of-type(4n)
+  {
+    margin-right: 0;
+  }
+}
+
+@media screen and  (max-width:1023px) and (min-width:768px)
+{
+  .ultimos-avisos .aviso
+  {
+    width: 31.33333%;
+    margin-right: 3.000005%;
+    margin-bottom:  3.000005%;
+  }
+
+  .ultimos-avisos .aviso:nth-of-type(3n)
+  {
+    margin-right: 0%;
+  }
+}
+
+
+@media screen and (max-width:767px) and (min-width:601px)
+{
+
+  .ultimos-avisos .aviso
+  {
+    width: 31.33333%;
+    margin-right: 3.000005%;
+    margin-bottom:  3.000005%;
+  }
+
+  .ultimos-avisos .aviso:nth-of-type(3n)
+  {
+    margin-right: 0%;
+  }
+
+
+
+}
+@media screen and (max-width:600px)  and (min-width:426px){
+
+
+
+  .ultimos-avisos .aviso
+  {
+    width: 48.5%;
+    margin-right: 3%;
+    margin-bottom:  3%;
+  }
+
+  .ultimos-avisos .aviso:nth-of-type(2n)
+  {
+    margin-right: 0%;
+  }
+}
+
+@media screen and (max-width:425px) and (min-width: 0px) {
+  .ultimos-avisos .aviso
+  {
+    width: 100%;
+    margin-bottom: 3%;
+  }
+
+
+}

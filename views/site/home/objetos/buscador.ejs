@@ -1,0 +1,58 @@
+<style>
+  .buscador
+  {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 250px;
+    background-color: #eeeeee;
+    align-items: center;
+
+  }
+  .buscador form
+  {
+    margin: auto;
+  }
+
+  form .form-block
+  {
+    width: 100%;
+    position: relative;
+  }
+  form .form-block label
+  {
+    margin-bottom: 10px;
+    width: 100%;
+    display: block;
+    font-weight: 300;
+  }
+
+
+  form .form-block input
+  {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+  }
+  form .form-block input:focus, form .form-block input.ng-not-empty
+  {
+    position: absolute;
+    top: 13px;
+    font-size: 18px;
+    left: 10px;
+
+
+  }
+
+</style>
+<div class="buscador">
+
+  <form>
+    <div class="form-block">
+
+      <input data-ng-model="search.q"type="text">
+      <label>¿Qué estas buscando?</label>
+    </div>
+  </form>
+
+</div>
