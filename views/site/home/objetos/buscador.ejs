@@ -13,45 +13,36 @@
   {
     margin: auto;
   }
-
-  form .form-block
+  .buscador form input
   {
-    width: 100%;
-    position: relative;
-  }
-  form .form-block label
-  {
-    margin-bottom: 10px;
-    width: 100%;
-    display: block;
-    font-weight: 300;
+    border: 0;
+    outline: 0;
+    font-size: 25px;
   }
 
+  form .form-block input:focus + label, form .form-block input.ng-not-empty + label {
 
-  form .form-block input
-  {
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
   }
-  form .form-block input:focus, form .form-block input.ng-not-empty
+  .buscador-title
   {
-    position: absolute;
-    top: 13px;
-    font-size: 18px;
-    left: 10px;
-
-
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .buscador-title
+  {    font-size: 35px;
+    margin-bottom: 30px;
+    color: #009688;
   }
 
 </style>
-<div class="buscador">
+<div class="buscador fila">
 
-  <form>
-    <div class="form-block">
-
-      <input data-ng-model="search.q"type="text">
-      <label>¿Qué estas buscando?</label>
+  <form class="col s-10 m-6 l-4">
+    <h2 class="buscador-title">Encontrá lo que buscás en segundos...</h2>
+    <div class="form-block ">
+      <input  id="search" data-ng-model="search.q"type="text">
+      <label for="search">¿Qué estas buscando?</label>
     </div>
   </form>
 
