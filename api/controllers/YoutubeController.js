@@ -14,9 +14,11 @@ module.exports=
   ,
   getLink: function (req,res) {
 
+    var proxyIp='http://95.67.57.54:3129/';
+    var args=['--proxy', proxyIp];
+    var video = youtubedl(`http://www.youtube.com/watch?v=${req.param("video")}`,args);
 
-
-      var video = youtubedl(`http://www.youtube.com/watch?v=${req.param("video")}`);
+//      var video = youtubedl(`http://www.youtube.com/watch?v=${req.param("video")}`);
       video.on('info', function(info) {
 
 

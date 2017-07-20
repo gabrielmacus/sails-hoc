@@ -1,19 +1,22 @@
 /**
  * Created by Gabriel on 30/06/2017.
  */
+
 module.exports=
 {
   index:function (req,res) {
-/*
-    var fs = require('fs');
-    var youtubedl = require('youtube-dl');
+    console.dir ( res.connection.remoteAddress );
 
-    youtubedl.getInfo('https://www.youtube.com/watch?v=2b4zEYWJHRc', function(err, info) {
-      if (err) throw err;
+    /*
+        var fs = require('fs');
+        var youtubedl = require('youtube-dl');
 
-      console.log(info);
-    });
-*/
+        youtubedl.getInfo('https://www.youtube.com/watch?v=2b4zEYWJHRc', function(err, info) {
+          if (err) throw err;
+
+          console.log(info);
+        });
+    */
     SeccionService.verSeccionPrincipal(function (err,seccionPrincipal) {
 
 
