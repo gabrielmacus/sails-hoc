@@ -40,6 +40,8 @@
   "usuario.errorActualizacion":"Error al actualizar el usuario",
 
   "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde",
+  "youtube.noHayFormatos":"No se encontro el video",
+
 
   "clasificado.seleccionarSeccion":"Seccioná una sección",
   "clasificado.completarDatos":"Completá los datos",

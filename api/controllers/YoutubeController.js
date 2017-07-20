@@ -19,30 +19,36 @@ module.exports=
     var video = youtubedl(`http://www.youtube.com/watch?v=${req.param("video")}`);
 
 //      var video = youtubedl(`http://www.youtube.com/watch?v=${req.param("video")}`);
-      video.on('info', function(err,info) {
+      video.on('info', function(info) {
 
-
-
-        var arr=info.formats.filter(
-          function(el){
-            return el.format.includes("audio only")
-          }
-        );
-
-        if(arr.length==0 & info.formats.length>0)
+        if(info)
         {
+          var arr=info.formats.filter(
+            function(el){
+              return el.format.includes("audio only")
+            }
+          );
 
-          arr= [info.formats[0]];
-        }
-
-        if(arr.length>0)
-        {
-          var audio=  arr[0];
-
-
-          if(audio)
+          if(arr.length==0 & info.formats.length>0)
           {
-            res.json(audio.url);
+
+            arr= [info.formats[0]];
+          }
+
+          if(arr.length>0)
+          {
+            var audio=  arr[0];
+
+
+            if(audio)
+            {
+              res.json(audio.url);
+            }
+            else
+            {
+              res.serverError(res.i18n("youtube.errorLink"));
+            }
+
           }
           else
           {
@@ -52,17 +58,15 @@ module.exports=
         }
         else
         {
-          res.serverError(res.i18n("youtube.errorLink"));
+          res.i18n("youtube.noHayFormatos");
         }
-
-
 
 
       });
     video.on("error",function (err) {
 
       console.log(err);
-      
+
     });
 
 
