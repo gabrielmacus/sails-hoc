@@ -1,0 +1,139 @@
+
+<style>
+  .mas-populares
+  {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .mas-populares .aviso .body
+  {
+    width: 100%;
+    height: 200px;
+    position: relative;
+  }
+  .mas-populares .aviso figure,.ultimos-avisos .aviso img
+  {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .ultimos-avisos .aviso
+  {
+
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+
+  @media screen and (min-width: 1024px)
+  {
+    .ultimos-avisos .aviso
+    {
+      width: 31.33333%;
+      margin-right: 3.000005%;
+      margin-bottom:  3.000005%;
+    }
+
+    .ultimos-avisos .aviso:nth-of-type(3n)
+    {
+      margin-right: 0%;
+    }
+  }
+
+  @media screen and  (max-width:1023px) and (min-width:768px)
+  {
+    .ultimos-avisos .aviso
+    {
+      width: 31.33333%;
+      margin-right: 3.000005%;
+      margin-bottom:  3.000005%;
+    }
+
+    .ultimos-avisos .aviso:nth-of-type(3n)
+    {
+      margin-right: 0%;
+    }
+  }
+
+
+  @media screen and (max-width:767px) and (min-width:601px)
+  {
+
+    .ultimos-avisos .aviso
+    {
+      width: 31.33333%;
+      margin-right: 3.000005%;
+      margin-bottom:  3.000005%;
+    }
+
+    .ultimos-avisos .aviso:nth-of-type(3n)
+    {
+      margin-right: 0%;
+    }
+
+
+
+  }
+  @media screen and (max-width:600px)  and (min-width:426px){
+
+
+
+    .ultimos-avisos .aviso
+    {
+      width: 48.5%;
+      margin-right: 3%;
+      margin-bottom:  3%;
+    }
+
+    .ultimos-avisos .aviso:nth-of-type(2n)
+    {
+      margin-right: 0%;
+    }
+  }
+
+  @media screen and (max-width:425px) and (min-width: 0px) {
+    .ultimos-avisos .aviso
+    {
+      width: 100%;
+      margin-bottom: 3%;
+    }
+
+
+  }
+
+</style>
+
+<div class="mas-populares">
+  <h2 class="title">Más populares</h2>
+  <% for(var i=0;i<7;i++)
+  {
+  %>
+  <article class="aviso">
+
+    <div class="body">
+      <figure>
+        <img src="https://acs2.blob.core.windows.net/imgcatalogo/xl/P_e5c0ab8b07204098a2d02a8e7301803d.jpg">
+        <figcaption class="categoria">
+          Autos
+        </figcaption>
+      </figure>
+
+
+    </div>
+
+    <footer>
+      <span class="nombre-usuario">19 de Julio</span>
+      <h3>Amarok 2.4 Diesel Impecable primera mano 2013</h3>
+
+
+    </footer>
+    <!--
+        <div class="mask"></div>
+    -->
+  </article>
+  <%
+  }%>
+
+</div>
