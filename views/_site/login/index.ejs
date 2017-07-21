@@ -1,0 +1,18 @@
+<div data-ng-controller="loginController" data-ng-if="!usuario">
+  <form data-ng-submit="login()">
+
+    <div>
+      <label>
+        Usuario o Email
+      </label>
+      <input data-ng-model="usuarioLogin.nombreUsuario" type="text">
+    </div>
+    <div>
+      <label>Contraseña</label>
+      <input  data-ng-model="usuarioLogin.contrasena" type="password">
+    </div>
+    <button type="submit">Aceptar</button>
+
+  </form>
+
+</div>

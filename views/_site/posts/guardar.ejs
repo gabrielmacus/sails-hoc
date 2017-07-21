@@ -1,0 +1,68 @@
+<script>
+
+  app.controller('postSaveController', function($rootScope, $http) {
+
+    $rootScope.secciones  = <%- JSON.stringify(secciones) %>;
+
+
+    $rootScope
+
+
+  });
+
+  app.config(function($routeProvider) {
+
+    $routeProvider
+      .when("/", {
+        template : document.querySelector("#page-1").innerHTML
+      }).
+      when("/<%= res.i18n("clasificado.paso2route")%>",
+        {
+          template:document.querySelector("#page-2").innerHTML
+        })
+
+  });
+</script>
+<div class="guardar" data-ng-controller="postSaveController">
+  <div id="page-1" style="display: none">
+
+    <header>
+      <h2><%= res.i18n("clasificado.seleccionarSeccion")%></h2>
+    </header>
+
+    <form>
+      <div>
+        <label><%= res.i18n("clasificado.seccion")%></label>
+
+        <select data-ng-model="seccion" data-ng-options="s as s.nombre for s in secciones" ></select>
+      </div>
+      <div>
+        <label><%= res.i18n("clasificado.subseccion")%></label>
+        <select data-ng-model="subseccion" data-ng-options="s as s.nombre for s  in seccion.secciones" ></select>
+      </div>
+
+      <a href="#!<%= res.i18n("clasificado.paso2route")%>" data-ng-if="subseccion"><%= res.i18n("clasificado.siguiente")%></a>
+
+    </form>
+
+  </div>
+
+  <div id="page-2" style="display: none">
+
+    <header>
+      <h2><%= res.i18n("clasificado.completarDatos")%></h2>
+    </header>
+
+    <form>
+
+      <div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+  <div ng-view ></div>
+
+</div>
