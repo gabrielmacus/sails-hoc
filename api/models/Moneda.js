@@ -8,7 +8,7 @@ module.exports = {
   attributes:
   {
     nombre:{type:"string",size:50,required:true},
-    denominacion:{type:"string",size:50}
+    denominacion:{type:"string",size:50,required:true}
   }
 
 };

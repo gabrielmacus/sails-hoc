@@ -42,6 +42,7 @@
   "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde",
   "youtube.noHayFormatos":"No se encontro el video",
 
+  "moneda.errorRecuperarMonedas":"Hubo un error al recuperar las monedas",
 
   "clasificado.seleccionarSeccion":"Seccioná una sección",
   "clasificado.completarDatos":"Completá los datos",
