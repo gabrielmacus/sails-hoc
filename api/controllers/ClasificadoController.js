@@ -26,6 +26,7 @@ module.exports=
     var uploadedArchivos=[];
 
 
+
     async.waterfall([
       function(callback) {
 
@@ -41,7 +42,7 @@ module.exports=
 
                if(result.error)
                {
-               res.json(result.code,res.i18n(result.error));
+             return  res.json(result.code,res.i18n(result.error));
 
                }
 

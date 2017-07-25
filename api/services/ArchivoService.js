@@ -88,6 +88,12 @@ module.exports=
             return cb({code:500,error:"repositorio.errorAlSeleccionar"});
           }
 
+          if(!results || results.length==0)
+          {
+            return cb({code:400,error:"subidaArchivos.noExisteRepositorio"});
+          }
+
+
           repositorio=results[0];
           carpeta=process.cwd()+"/assets/"+repositorio.carpetaDeGuardado;
           callback();
