@@ -68,8 +68,12 @@ module.exports=
 
       },
       function(callback) {
-                        console.log("SADSDA");
-        console.log(uploadedArchivos);
+
+  
+          sails.log.debug("------ Uploaded Files ------");
+          sails.log.debug(uploadedArchivos);
+        
+
         if(uploadedArchivos.length>0)
         {
           clasificado.archivos=[];
