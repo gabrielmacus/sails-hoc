@@ -51,6 +51,7 @@ module.exports.routes = {
 
   'get /secciones/arbol':'SeccionController.getArbol',
   'get /youtube/link/:video':"YoutubeController.getLink",
+  'get /youtube/download/:video':"YoutubeController.download",
 
 
   'get /admin':"PanelController.index",

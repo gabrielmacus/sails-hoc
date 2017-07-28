@@ -10,6 +10,34 @@ app.controller('songListController', function($rootScope, $location,ngAudio) {
     $rootScope.playlists={};
   }
 
+  $rootScope.download=
+    function(song)
+    {
+
+
+      $.ajax(
+        {
+          method:"get",
+          dataType:"json",
+          url:mainUrl+"/youtube/download/"+song.id,
+          success:function (res) {
+            //$rootScope.player = ngAudio.load(res);
+            //  console.log($rootScope.player);
+
+            // $rootScope.playlist.push(res);
+
+            downloadLink(res.url);
+
+          },
+          error:error
+        }
+      );
+
+
+
+    }
+
+
   $rootScope.addToPlaylist=function(song,playlist)
   {
 

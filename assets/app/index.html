@@ -20,7 +20,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
 
 
-
 <script src="js/angular.audio.js"></script>
 <link rel="stylesheet" href="css/ng-animation.css">
 <script
@@ -31,7 +30,7 @@
 <!-- Your application bootstrap  -->
 <script type="text/javascript">
 
-  var mainUrl="http://localhost:1337";
+  var mainUrl="http://c2c018f4.ngrok.io";
 
   function error(err) {
 
@@ -45,10 +44,19 @@
 
 
 var scope;
+     function downloadLink(url)
+   {
+
+   var pom = document.createElement('a');
+   pom.setAttribute('href', url);
+   pom.click();
+   }
 
   app.controller('directMusicController', function($rootScope, $location,$timeout) {
 
     scope=$rootScope;
+
+    $rootScope.mainUrl=mainUrl;
 
     $rootScope.toggleSearch=function () {
       $rootScope.searching=!$rootScope.searching;

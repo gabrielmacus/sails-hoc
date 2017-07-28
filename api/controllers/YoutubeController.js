@@ -1,7 +1,8 @@
 /**
  * Created by Puers on 03/07/2017.
  */
-var youtubedl = require('youtube-dl');
+var https = require('https'),
+  fs = require('fs');
 module.exports=
 {
   search: function (req,res) {
@@ -14,62 +15,39 @@ module.exports=
   ,
   getLink: function (req,res) {
 
-    var proxyIp='http://95.67.57.54:3129';
-    var args=['--proxy', proxyIp];
-    var video = youtubedl(`http://www.youtube.com/watch?v=${req.param("video")}`);
+    var id=req.param("video");
 
-//      var video = youtubedl(`http://www.youtube.com/watch?v=${req.param("video")}`);
-      video.on('info', function(info) {
-
-        if(info)
-        {
-          var arr=info.formats.filter(
-            function(el){
-              return el.format.includes("audio only")
-            }
-          );
-
-          if(arr.length==0 & info.formats.length>0)
-          {
-
-            arr= [info.formats[0]];
-          }
-
-          if(arr.length>0)
-          {
-            var audio=  arr[0];
+    YoutubeService.getLink(id, function (link) {
 
 
-            if(audio)
-            {
-              res.json(audio.url);
-            }
-            else
-            {
-              res.serverError(res.i18n("youtube.errorLink"));
-            }
+      if(link.error)
+      {
+     return   res.json(link.code,res.i18n(link.error));
+      }
 
-          }
-          else
-          {
-            res.serverError(res.i18n("youtube.errorLink"));
-          }
-
-        }
-        else
-        {
-          res.i18n("youtube.noHayFormatos");
-        }
-
-
-      });
-    video.on("error",function (err) {
-
-      console.log(err);
+     return res.json(link.url);
 
     });
 
+  },
+  download: function (req, res) {
 
+    var id=req.param("video");
+
+    YoutubeService.getLink(id, function (link) {
+
+      if(link.error)
+      {
+        return   res.json(link.code,res.i18n(link.error));
+      }
+      return  res. json(link);
+
+
+
+    });
 
   }
+
+
+
 }
