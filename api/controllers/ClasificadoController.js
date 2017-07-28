@@ -26,6 +26,7 @@ module.exports=
     var uploadedArchivos=[];
 
 
+
     async.waterfall([
       function(callback) {
 
@@ -41,7 +42,7 @@ module.exports=
 
                if(result.error)
                {
-               res.json(result.code,res.i18n(result.error));
+             return  res.json(result.code,res.i18n(result.error));
 
                }
 
@@ -67,8 +68,12 @@ module.exports=
 
       },
       function(callback) {
-                        console.log("SADSDA");
-        console.log(uploadedArchivos);
+
+  
+          sails.log.debug("------ Uploaded Files ------");
+          sails.log.debug(uploadedArchivos);
+        
+
         if(uploadedArchivos.length>0)
         {
           clasificado.archivos=[];

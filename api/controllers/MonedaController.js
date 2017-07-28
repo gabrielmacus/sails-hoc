@@ -14,7 +14,7 @@ module.exports=
 
     var elementosAsociados=[];
     var perPage=500;
-    var currentPage= (req.params("p")&& !isNaN(i*req.params("p")))?req.params("p") : 1;
+    var currentPage= (req.param("p")&& !isNaN(1*req.param("p")))?req.param("p") : 1;
     var conditions={};
 
     pager.paginate(Moneda, conditions, currentPage, perPage, elementosAsociados).then(function(records){
