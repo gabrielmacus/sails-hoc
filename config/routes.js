@@ -46,6 +46,9 @@ module.exports.routes = {
   //'get /nuevo/clasificado':'ClasificadoController.save',
   'POST /clasificado':'ClasificadoController.guardar',
 
+  'POST /facebook/post/image':'FacebookController.postImage',
+  'POST /facebook/get/longToken':'FacebookController.getLongToken',
+
 
   'get /':'HomeController.index',
 

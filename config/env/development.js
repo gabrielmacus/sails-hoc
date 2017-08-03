@@ -52,5 +52,15 @@ module.exports = {
     read:"5",
     update:"5",
     delete:"7"
+  },
+  facebook:
+  {
+
+    version:'2.8',
+    id:'1874200559512926',
+    secret:'28f2d83d08132603be62ab63435d4618',
+    token:'EAAaok1KWbV4BAOXetfRu6PVwosG0Cks99wQ646UeweJHakZBUTpCfvdI336S7yfzkx9u3dY8BeU1wfjaj3G1nTmYESEb9qguCG6JbPPQ473jwDE7CW3PH1mqebEb8exFp8PLQWpIt8jD75gxn3yswZCV5VJxgZD'
+    //Expira en 60 dias, desde el 03.08.17
+
   }
 };

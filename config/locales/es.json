@@ -42,6 +42,9 @@
   "youtube.errorLink":"Hubo un error al intentar obtener el enlace. Inténtelo mas tarde",
   "youtube.noHayFormatos":"No se encontro el video",
 
+  "facebook.postError":"Error al realizar la publicación",
+  "facebook.longTokenError":"Error al obtener el token de larga duración",
+
   "moneda.errorRecuperarMonedas":"Hubo un error al recuperar las monedas",
 
   "clasificado.seleccionarSeccion":"Seccioná una sección",
