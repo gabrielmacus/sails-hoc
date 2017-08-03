@@ -40,7 +40,9 @@
     "sails-disk": "~0.10.9",
     "sails-mongo": "^0.12.2",
     "sails-pager": "^2.1.0",
+    "selenium-webdriver": "^3.5.0",
     "semantic-ui": "^2.2.10",
+    "webdriverio": "^4.8.0",
     "youtube-dl": "^1.11.1"
   },
   "scripts": {

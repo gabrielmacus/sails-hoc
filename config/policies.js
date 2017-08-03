@@ -60,11 +60,11 @@ module.exports.policies = {
   },
   ClasificadoController:
   {
-    save:['sessionAuth'],
-    update:['sessionAuth'],
-    create: ['sessionAuth'],
-    destroy:['sessionAuth'],
-    guardar:['sessionAuth']
+    save:['sessionAuth','tienePermisosPanel'],
+    update:['sessionAuth','tienePermisosPanel'],
+    create: ['sessionAuth','tienePermisosPanel'],
+    destroy:['sessionAuth','tienePermisosPanel'],
+    guardar:['sessionAuth','tienePermisosPanel']
   },
   PanelController:
   {
@@ -86,12 +86,12 @@ module.exports.policies = {
   },
   ArchivoController:
   {
-    create: ['sessionAuth'],
-    update:['sessionAuth'],
-    delete:['sessionAuth'],
-    subir:['sessionAuth'],
-    subirTmp:['sessionAuth'],
-    guardar:['sessionAuth']
+    create: ['sessionAuth','tienePermisosPanel'],
+    update:['sessionAuth','tienePermisosPanel'],
+    delete:['sessionAuth','tienePermisosPanel'],
+    subir:['sessionAuth','tienePermisosPanel'],
+    subirTmp:['sessionAuth','tienePermisosPanel'],
+    guardar:['sessionAuth','tienePermisosPanel']
   },
   RepositorioController:
   {

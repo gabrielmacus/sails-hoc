@@ -1,6 +1,13 @@
 /**
  * Created by Puers on 02/08/2017.
  */
+
+var webdriverio = require('webdriverio');
+var options = {
+  desiredCapabilities: {
+    browserName: 'firefox'
+  }
+};
 var FB = require('fb');
 var  fb = new FB.Facebook({
   version:sails.config.facebook.version,
@@ -55,6 +62,56 @@ module.exports=
       callback({error:"facebook.longTokenError",code:400});
     }
 
+  },
+  postImageSelenium: function(callback)
+  {
+
+     webdriverio
+      .remote(options)
+      .init()
+       .url('https://facebook.com')
+    .setValue('#email','rocio.dure.92')
+    .setValue('#pass','pitufino')
+    .click("[data-testid='royal_login_button']")
+    .url('https://www.facebook.com/groups/189905047763101/')
+    .click("[placeholder*='vendes']")
+    .setValue("[placeholder*='vendes']","test") //titulo
+    .click("[placeholder*='vendes']")
+    .click("[placeholder*='vendes']")
+    .waitForExist('[placeholder*="precio"]')
+    .setValue("[placeholder*='precio']","0")
+    .chooseFile("[title*='subir']","C:\\Users\\Gabriel\\Downloads\\KApI135.jpg")
+      .click("[contenteditable]")
+    .execute(function () {
+      var el=document.createElement("<span data-text='true'>Messsage</span>");
+      document.querySelector('[data-text="true"]').replaceWith(el);
+    });
+
+    return callback({});
+    /*
+    webdriverio
+      .remote(options)
+      .init()
+      .url('https://facebook.com')
+      .setValue('#email','rocio.dure.92')
+      .setValue('#pass','pitufino')
+      .click("[data-testid='royal_login_button']")
+      .url('https://www.facebook.com/groups/189905047763101/')
+      .click("._58al")
+      .setValue("[placeholder*='vendes']","test") //titulo
+      .click("._58al")
+     // .waitForExist("[placeholder*='precio']")
+      .waitUntil
+      .setValue("[placeholder*='precio']","0")
+      .chooseFile("[title*='subir']","C:\\Users\\Gabriel\\Downloads\\KApI135.jpg")
+
+      .keys("[contenteditable]",'Keys Strokes')*/
+
+      /*.url('http://www.google.com')
+      .getTitle().then(function(title) {
+        console.log('Title was: ' + title);
+      })*/
+     // .end();
   }
 
 }

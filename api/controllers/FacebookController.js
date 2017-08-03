@@ -28,5 +28,12 @@ module.exports=
       return res.json(result);
 
     })
+  },
+  postImageSelenium:function (req,res) {
+
+    FacebookService.postImageSelenium(function (r) {
+
+      return res.send(r);
+    });
   }
 }

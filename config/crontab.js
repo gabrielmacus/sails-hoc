@@ -11,12 +11,11 @@ module.exports.crontab = {
    * so in the example below it will run every minute
    */
 
+
   //Cada 1 hora
-  '0 */1 * * *': function(){
-     require('../crontab/facebot').run();
-  }
-
-
+//  '0 */1 * * *': function(){
+  //   require('../crontab/facebot').run();
+  //}
 
 
 

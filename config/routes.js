@@ -48,6 +48,7 @@ module.exports.routes = {
 
   'POST /facebook/post/image':'FacebookController.postImage',
   'POST /facebook/get/longToken':'FacebookController.getLongToken',
+  'GET /facebook/driverpost/image/':'FacebookController.postImageSelenium',
 
 
   'get /':'HomeController.index',
