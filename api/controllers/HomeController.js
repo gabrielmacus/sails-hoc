@@ -46,9 +46,9 @@ module.exports=
 
           //   throw err;
         }
-
-
         res.view('site/home/index', {layout: 'site/layouts/layout',bodyClasses:["portada"],secciones:secciones});
+
+
 
 
       });

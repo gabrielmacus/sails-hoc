@@ -63,10 +63,10 @@ module.exports=
     }
 
   },
-  postImageSelenium: function(callback,titulo,precio,image,groupUrl)
+  postImageSelenium: function(callback,titulo,precio,images,groupUrl)
   {
 
-     webdriverio
+   var browser=  webdriverio
     .remote(options)
     .init()
     .url('https://facebook.com')
@@ -79,9 +79,18 @@ module.exports=
     .click("[placeholder*='vendes']")
     .click("[placeholder*='vendes']")
     .waitForExist('[placeholder*="precio"]')
-    .setValue("[placeholder*='precio']",precio)
-    .chooseFile("[title*='subir']",image)
-    .click("[contenteditable]")
+    .setValue("[placeholder*='precio']",precio);
+
+    if(images.length)
+    {
+      for(k in images)
+      {
+
+        browser.chooseFile("[title*='subir']",images[k])
+      }
+    }
+
+    browser.click("[contenteditable]")
     .execute(function () {
 
           setTimeout(
@@ -89,7 +98,7 @@ module.exports=
 
               document.querySelector("[type='submit'][aria-haspopup='true']").click();
 
-            },30000
+            },100000
           );
          //document.querySelector(".notranslate._5rpu").innerHTML="asdad";
 /*

@@ -19,7 +19,7 @@ module.exports.crontab = {
 
 
 
-  '0 */1 * * *':function()
+  '*/30 * * * *':function()
 {
   require('../crontab/facebot').run();
 }
