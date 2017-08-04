@@ -31,9 +31,15 @@ module.exports=
   },
   postImageSelenium:function (req,res) {
 
-    FacebookService.postImageSelenium(function (r) {
+    var titulo="Llego Autentica ❤! Te traemos las zapas mas copadas! Tenemos stock inmediato, consultanos al privado";
+    var precio ="0";
+    var groupUrl='https://www.facebook.com/groups/189905047763101/';
 
-      return res.send(r);
-    });
+    FacebookService.postImageSelenium(function(){
+
+      res.end();
+
+    },titulo,precio,"C:\\Users\\Puers\\Documents\\autentica\\4.huarapa-placa-grace-01-01.png",groupUrl);
+
   }
 }

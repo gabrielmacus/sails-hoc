@@ -63,32 +63,66 @@ module.exports=
     }
 
   },
-  postImageSelenium: function(callback)
+  postImageSelenium: function(callback,titulo,precio,image,groupUrl)
   {
 
      webdriverio
-      .remote(options)
-      .init()
-       .url('https://facebook.com')
+    .remote(options)
+    .init()
+    .url('https://facebook.com')
     .setValue('#email','rocio.dure.92')
     .setValue('#pass','pitufino')
     .click("[data-testid='royal_login_button']")
-    .url('https://www.facebook.com/groups/189905047763101/')
+    .url(groupUrl)
     .click("[placeholder*='vendes']")
-    .setValue("[placeholder*='vendes']","test") //titulo
+    .setValue("[placeholder*='vendes']",titulo) //titulo
     .click("[placeholder*='vendes']")
     .click("[placeholder*='vendes']")
     .waitForExist('[placeholder*="precio"]')
-    .setValue("[placeholder*='precio']","0")
-    .chooseFile("[title*='subir']","C:\\Users\\Gabriel\\Downloads\\KApI135.jpg")
-      .click("[contenteditable]")
+    .setValue("[placeholder*='precio']",precio)
+    .chooseFile("[title*='subir']",image)
+    .click("[contenteditable]")
     .execute(function () {
-      var el=document.createElement("<span data-text='true'>Messsage</span>");
-      document.querySelector('[data-text="true"]').replaceWith(el);
-    });
 
-    return callback({});
-    /*
+          setTimeout(
+            function () {
+
+              document.querySelector("[type='submit'][aria-haspopup='true']").click();
+
+            },30000
+          );
+         //document.querySelector(".notranslate._5rpu").innerHTML="asdad";
+/*
+         document.querySelector("._1p1t").remove();
+         document.querySelector("[contenteditable]").removeAttribute("aria-describedby");
+         var el=document.createElement("span");
+         el.dataset.text="true";
+         el.innerHTML="Message";
+         console.log(el);
+         document.querySelector('._5rpu > [data-text="true"]').replaceWith(el);*/
+    });
+  //  .end();
+  /*  .waitForEnabled("[type='submit'][aria-haspopup='true']")
+    .click('[type="submit"][aria-haspopup="true"]');
+*/
+
+/*
+    webdriverio
+      .remote(options)
+      .init()
+      .url('https://facebook.com')
+      .setValue('#email','rocio.dure.92')
+      .setValue('#pass','pitufino')
+      .click("[data-testid='royal_login_button']")
+      .url('https://www.facebook.com/permalink.php?story_fbid=1091452244287902&id=1032665866833207')
+      .click("[title*='a amigos o']")
+      .click(".share_action_link")
+      .waitForExist("._54nf > .__MenuItem > a")
+      .click("._54nf > .__MenuItem > a")
+      .waitForExist("#audience_group")
+      .setValue("#audience_group","C")
+*/
+/*
     webdriverio
       .remote(options)
       .init()
@@ -100,12 +134,12 @@ module.exports=
       .click("._58al")
       .setValue("[placeholder*='vendes']","test") //titulo
       .click("._58al")
-     // .waitForExist("[placeholder*='precio']")
-      .waitUntil
+      .waitForExist("[placeholder*='precio']")
       .setValue("[placeholder*='precio']","0")
-      .chooseFile("[title*='subir']","C:\\Users\\Gabriel\\Downloads\\KApI135.jpg")
-
-      .keys("[contenteditable]",'Keys Strokes')*/
+      .chooseFile("[title*='subir']","C:\\Users\\Puers\\Documents\\autentica\\2.huarapa-placa-pink-01.png")
+     // .keys("[contenteditable]",'Keys Strokes')
+*/
+    return callback({});
 
       /*.url('http://www.google.com')
       .getTitle().then(function(title) {
