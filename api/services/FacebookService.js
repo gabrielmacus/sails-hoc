@@ -98,7 +98,7 @@ module.exports=
 
               document.querySelector("[type='submit'][aria-haspopup='true']").click();
 
-            },100000
+            },180000
           );
          //document.querySelector(".notranslate._5rpu").innerHTML="asdad";
 /*
