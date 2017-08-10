@@ -19,11 +19,18 @@ module.exports.crontab = {
 
 
 
+  //'*/45 * * * *':function()
+  //{
+    //require('../crontab/facebot2').run();
+  //}//,
+    //'*/40 * * * *':function()
+  //{
+   // require('../crontab/facebot').run();
+  //}
+
+  //Cada media hora, en distintos grupos
   '*/30 * * * *':function()
-{
-  require('../crontab/facebot').run();
-}
-
-
-
+  {
+   require('../crontab/facebot').run();
+  }
 };

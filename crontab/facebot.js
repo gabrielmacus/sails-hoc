@@ -3,29 +3,46 @@
  */
 
 
-
-
+var groups=
+  [
+    'https://www.facebook.com/groups/415476081830592/',
+    'https://www.facebook.com/groups/189905047763101/',
+    'https://www.facebook.com/groups/1400218443590187/',
+    'https://www.facebook.com/groups/302488623479279/'
+  ];
+var loop=0;
 
 module.exports = {
   run : function(){
     sails.log.info("facebot.js: "+new Date());
 
-    var titulo="Llego Autentica ❤! Te traemos las zapas mas copadas! Tenemos stock inmediato, consultanos al privado";
+
+    if(loop==groups.length)
+    {
+      loop=0;
+    }
+
+    var groupUrl = groups[loop];
+
+    loop++;
+    var titulo="¿Con cuál te quedas? Tenemos stock inmediato de las zapas mas copadas, consultanos al privado";
     var precio ="0";
-    var groupUrl='https://www.facebook.com/groups/415476081830592/';
+
+
+
+    var mainPath='C:\\Users\\Puers\\Documents\\autentica\\';
     var images =
       [
-        'C:\\Users\\Gabriel\\Pictures\\Autentica\\1.huarapa-special.png',
-        'C:\\Users\\Gabriel\\Pictures\\Autentica\\2.huarapa-placa-pink-01.png',
-        'C:\\Users\\Gabriel\\Pictures\\Autentica\\3.huarapa-placa-metric-01-01.png',
-        'C:\\Users\\Gabriel\\Pictures\\Autentica\\4.huarapa-placa-grace-01-01.png',
-        'C:\\Users\\Gabriel\\Pictures\\Autentica\\5.huarapa-placa-french-bordo-01.png',
-        'C:\\Users\\Gabriel\\Pictures\\Autentica\\6.huarapa-placa-aqua-01-01-01.png',
-        'C:\\Users\\Gabriel\\Pictures\\Autentica\\7.huarapa-placa-french-negras-01.png',
-        'C:\\Users\\Gabriel\\Pictures\\Autentica\\8.huarapa-placa-tiger-01.png'
+        mainPath+'wt_french_bordo_compressed.jpg',
+        mainPath+'wt_tiger_compressed.jpg',
+        mainPath+'wt_special_compressed.jpg',
+        mainPath+'wt_pink_compressed.jpg',
+        mainPath+'wt_metric_compressed.jpg',
+        mainPath+'wt_grace_compressed.jpg',
+        mainPath+'wt_french_negra_compressed.jpg',
+        mainPath+'wt_aqua_compressed.jpg'
 
       ];
-
 
     FacebookService.postImageSelenium(function(){
 
