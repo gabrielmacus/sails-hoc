@@ -34,10 +34,11 @@ module.exports = {
     var mainPath='C:\\Autentica\\';
     var images =
       [
+
+        mainPath+'wt_metric_compressed.jpg',
         mainPath+'wt_french_bordo_compressed.jpg',
         mainPath+'wt_special_compressed.jpg',
         mainPath+'wt_pink_compressed.jpg',
-        mainPath+'wt_metric_compressed.jpg',
         mainPath+'wt_french_negra_compressed.jpg'
 
       ];

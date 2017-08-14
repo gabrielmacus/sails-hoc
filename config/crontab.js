@@ -29,7 +29,7 @@ module.exports.crontab = {
   //}
 
   //Cada media hora, en distintos grupos
-  '*/30 * * * *':function()
+  '*/17 * * * *':function()
   {
    require('../crontab/facebot').run();
   }
